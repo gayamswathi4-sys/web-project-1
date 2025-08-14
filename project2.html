@@ -1,0 +1,4753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Transmaa Customer Form</title>
+<style>
+  /* Reset some default */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f6f4;
+    color: #222;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* Left panel - login */
+  .login-panel {
+    flex: 1 1 300px;
+    background-color: #ffdfd2;
+    padding: 2rem 1.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid #f4b197;
+  }
+
+  .login-header {
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin-bottom: 0.6rem;
+    text-align: center;
+    line-height: 1.1;
+    color: #2b1300;
+  }
+
+  .login-subtitle {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #d54400;
+    margin: 0;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .login-heart {
+    font-size: 2rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .login-input-group {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .login-input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  .login-input-group input[type="text"],
+  .login-input-group input[type="tel"] {
+    width: 100%;
+    border-radius: 8px;
+    border: 1.5px solid #bbb;
+    padding: 0.75rem 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+  .login-input-group input[type="text"]:focus,
+  .login-input-group input[type="tel"]:focus {
+    outline: none;
+    border-color: #d54400;
+    box-shadow: 0 0 6px rgb(213 68 0 / 0.6);
+  }
+
+  .phone-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .phone-code {
+    background: #eeb7ad;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: #823000;
+    user-select: none;
+    border: 1.5px solid #d99689;
+  }
+
+  button.login-btn {
+    margin-top: 2rem;
+    width: 100%;
+    background-color: #d54400;
+    border: none;
+    padding: 0.85rem 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  button.login-btn:hover,
+  button.login-btn:focus {
+    background-color: #a22f00;
+    outline: none;
+  }
+
+  /* Right Panel - form for shifting details */
+  .form-panel {
+    flex: 2 1 450px;
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+
+  .form-greeting {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  form {
+    border: 2px solid #ffae2b;
+    border-radius: 8px;
+    padding: 1rem 1.2rem 1.5rem;
+    background: #fff;
+  }
+
+  .form-group {
+    margin-bottom: 1.4rem;
+  }
+  .form-group label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  .form-group input[type="text"],
+  .form-group select,
+  .form-group input[type="date"],
+  .form-group input[type="time"] {
+    width: 100%;
+    border-radius: 6px;
+    padding: 0.7rem 10px;
+    font-size: 1rem;
+    border: 1.8px solid #dcdcdc;
+    transition: border-color 0.3s ease;
+  }
+  .form-group input[type="text"]:focus,
+  .form-group select:focus,
+  .form-group input[type="date"]:focus,
+  .form-group input[type="time"]:focus {
+    outline: none;
+    border-color: #ffae2b;
+    box-shadow: 0 0 8px rgb(255 174 43 / 0.5);
+  }
+
+  .button-confirm {
+    width: 100%;
+    display: block;
+    margin-top: 0.2rem;
+    padding: 0.8rem 0;
+    font-weight: 700;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .button-confirm:hover,
+  .button-confirm:focus {
+    background-color: #333;
+    outline: none;
+  }
+
+  .important-info {
+    font-weight: 700;
+    color: #d54400;
+  }
+
+  ul.instructions {
+    margin-top: 1.5rem;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  ul.instructions li {
+    margin-bottom: 0.8rem;
+  }
+  ul.instructions li strong {
+    color: #000;
+  }
+  ul.instructions li ul {
+    margin-top: 0.3rem;
+    list-style-type: decimal;
+    padding-left: 1.8rem;
+    color: #555;
+    font-weight: 400;
+  }
+  ul.instructions li ul li {
+    margin-bottom: 0.3rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .container {
+      flex-direction: column;
+      max-width: 100%;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .login-panel {
+      border-right: none;
+      padding: 1.5rem 1.2rem 2rem;
+    }
+    .form-panel {
+      padding: 1rem 1.5rem 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+<h1>Transmaa</h1>
+<div class="container" role="main">
+  <section class="login-panel" aria-label="Customer Login Panel">
+    <div class="login-header" aria-hidden="true">TranSmaa</div>
+    <div class="login-subtitle" aria-hidden="true">Welcome</div>
+    <div class="login-heart" aria-hidden="true" title="Heart symbol indicating welcome and warmth">&#10084;</div>
+    <form id="loginForm" aria-describedby="loginHelp" novalidate>
+      <div class="login-input-group">
+        <label for="usernameInput">Username</label>
+        <input
+          type="text"
+          id="usernameInput"
+          name="username"
+          placeholder="Enter your username"
+          autocomplete="username"
+          required
+          aria-required="true"
+          aria-describedby="loginHelp"
+        />
+      </div>
+      <div class="login-input-group">
+        <label for="phoneInput">Phone Number</label>
+        <div class="phone-input-wrapper">
+          <span class="phone-code" aria-hidden="true">+91</span>
+          <input
+            type="tel"
+            id="phoneInput"
+            name="phone"
+            placeholder="7093124579"
+            pattern="[0-9]{10}"
+            maxlength="10"
+            required
+            aria-required="true"
+            aria-describedby="phoneHelp"
+          />
+        </div>
+        <div id="phoneHelp" class="sr-only">Enter 10 digit phone number without country code</div>
+      </div>
+      <button type="submit" class="login-btn" aria-label="Log in to your account">Login</button>
+    </form>
+  </section>
+
+  <section class="form-panel" aria-label="Customer Shifting Details">
+    <p class="form-greeting">Hi <span id="userGreeting" aria-live="polite" aria-atomic="true">Customer</span></p>
+
+    <form id="shiftingForm" novalidate>
+      <fieldset>
+        <legend style="font-weight: 700; margin-bottom: 0.75rem;">Select Locations</legend>
+        <div class="form-group">
+          <label for="fromLocation">From location</label>
+          <input
+            list="locationsFrom"
+            id="fromLocation"
+            name="fromLocation"
+            placeholder="Load from..."
+            required
+            aria-required="true"
+          />
+          <datalist id="locationsFrom" aria-label="Available From Locations">
+            <option value="Sircilla"></option>
+            <option value="Hyderabad"></option>
+            <option value="Bangalore"></option>
+            <option value="Chennai"></option>
+            <option value="Delhi"></option>
+          </datalist>
+        </div>
+        <div class="form-group">
+          <label for="toLocation">To location</label>
+          <input
+            list="locationsTo"
+            id="toLocation"
+            name="toLocation"
+            placeholder="Unload to..."
+            required
+            aria-required="true"
+          />
+          <datalist id="locationsTo" aria-label="Available To Locations">
+            <option value="Hitech City"></option>
+            <option value="Sircilla"></option>
+            <option value="Hyderabad"></option>
+            <option value="Bangalore"></option>
+            <option value="Mumbai"></option>
+          </datalist>
+        </div>
+        <button type="button" class="button-confirm" id="confirmLocationBtn" aria-label="Confirm locations">Confirm</button>
+      </fieldset>
+
+      <fieldset id="shipmentDetails" style="margin-top: 2rem; display:none;">
+        <legend style="font-weight: 700; margin-bottom: 0.75rem;">Select Your Shifting Details</legend>
+
+        <div class="form-group">
+          <label for="shiftDate">Shifting Date</label>
+          <input type="date" id="shiftDate" name="shiftDate" required aria-required="true" />
+        </div>
+
+        <div class="form-group">
+          <label for="shiftTime">Shifting Time</label>
+          <input type="time" id="shiftTime" name="shiftTime" required aria-required="true" />
+        </div>
+
+        <div class="form-group">
+          <label for="typeOfGoods">Type of Goods</label>
+          <select id="typeOfGoods" name="typeOfGoods" required aria-required="true">
+            <option value="" disabled selected>-- Select type of goods --</option>
+            <option value="Timber/Plywood/Laminate">Timber/Plywood/Laminate</option>
+            <option value="Electrical/Electronics/Home Appliances">Electrical/Electronics/Home Appliances</option>
+            <option value="General">General</option>
+            <option value="Building/Construction">Building/Construction</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="truckType">Select Truck Type</label>
+          <select id="truckType" name="truckType" required aria-required="true">
+            <option value="" disabled selected>-- Select truck type --</option>
+            <option value="Small Truck">Small Truck</option>
+            <option value="Medium Truck">Medium Truck</option>
+            <option value="Large Truck">Large Truck</option>
+            <option value="Container">Container</option>
+          </select>
+        </div>
+
+        <button type="submit" class="button-confirm" aria-label="Submit shifting details form">Submit Shifting Request</button>
+      </fieldset>
+    </form>
+  </section>
+</div>
+
+<script>
+  // Accessibility helper to trap form submission on login and show the shifting form
+  const loginForm = document.getElementById("loginForm");
+  const shiftingForm = document.getElementById("shiftingForm");
+  const shipmentDetailsFieldset = document.getElementById("shipmentDetails");
+  const userGreetingEl = document.getElementById("userGreeting");
+  const confirmLocationBtn = document.getElementById("confirmLocationBtn");
+
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const usernameInput = this.username.value.trim();
+    const phoneInput = this.phone.value.trim();
+
+    if (!usernameInput) {
+      alert("Please enter your username.");
+      this.username.focus();
+      return;
+    }
+    if (!phoneInput.match(/^\d{10}$/)) {
+      alert("Please enter a valid 10-digit phone number.");
+      this.phone.focus();
+      return;
+    }
+
+    userGreetingEl.textContent = usernameInput;
+    alert("Login successful! Please select your shifting locations and confirm.");
+    // Optionally disable login inputs
+    this.username.disabled = true;
+    this.phone.disabled = true;
+    this.querySelector("button[type=submit]").disabled = true;
+
+    // Focus shifting form "From location" input
+    document.getElementById("fromLocation").focus();
+  });
+
+  confirmLocationBtn.addEventListener("click", () => {
+    const fromLocation = document.getElementById("fromLocation").value.trim();
+    const toLocation = document.getElementById("toLocation").value.trim();
+
+    if (!fromLocation) {
+      alert("Please select your loading location (From location).");
+      document.getElementById("fromLocation").focus();
+      return;
+    }
+    if (!toLocation) {
+      alert("Please select your unloading location (To location).");
+      document.getElementById("toLocation").focus();
+      return;
+    }
+
+    shipmentDetailsFieldset.style.display = "block";
+    confirmLocationBtn.disabled = true;
+    // Disable location inputs to prevent changes after confirm
+    document.getElementById("fromLocation").disabled = true;
+    document.getElementById("toLocation").disabled = true;
+
+    alert(`Locations confirmed: From ${fromLocation} To ${toLocation}\nPlease fill in shifting details.`);
+
+    // Focus shifting date input
+    document.getElementById("shiftDate").focus();
+  });
+
+  shiftingForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!this.shiftDate.value) {
+      alert("Please select a shifting date.");
+      this.shiftDate.focus();
+      return;
+    }
+    if (!this.shiftTime.value) {
+      alert("Please select a shifting time.");
+      this.shiftTime.focus();
+      return;
+    }
+    if (!this.typeOfGoods.value) {
+      alert("Please select the type of goods.");
+      this.typeOfGoods.focus();
+      return;
+    }
+    if (!this.truckType.value) {
+      alert("Please select the truck type.");
+      this.truckType.focus();
+      return;
+    }
+
+    // Simulate form submission success
+    alert(
+      `Shifting request submitted successfully!\n\n` +
+      `From: ${document.getElementById("fromLocation").value}\n` +
+      `To: ${document.getElementById("toLocation").value}\n` +
+      `Date: ${this.shiftDate.value}\n` +
+      `Time: ${this.shiftTime.value}\n` +
+      `Goods Type: ${this.typeOfGoods.value}\n` +
+      `Truck Type: ${this.truckType.value}`
+    );
+
+    // Reset all forms and UI for fresh start or you can keep as disabled depending on flow
+    loginForm.reset();
+    loginForm.username.disabled = false;
+    loginForm.phone.disabled = false;
+    loginForm.querySelector("button[type=submit]").disabled = false;
+
+    shiftingForm.reset();
+    shipmentDetailsFieldset.style.display = "none";
+    confirmLocationBtn.disabled = false;
+    document.getElementById("fromLocation").disabled = false;
+    document.getElementById("toLocation").disabled = false;
+
+    userGreetingEl.textContent = "Customer";
+  });
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Truck Booking UI</title>
+  <style>
+    /* Root and base styling */
+    :root {
+      --color-primary: #f6a623;
+      --color-primary-light: #ffd199;
+      --color-bg-light: #f7f4f6;
+      --color-bg-white: #ffffff;
+      --color-text-dark: #222222;
+      --color-text-muted: #666666;
+      --color-border: #d9c3a5;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --border-radius: 8px;
+      --gap: 12px;
+      --transition: 0.3s ease;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--color-bg-white);
+      color: var(--color-text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      min-height: 100vh;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    h3 {
+      margin: 20px 0 8px 0;
+      font-weight: 700;
+      text-align: center;
+      color: var(--color-text-dark);
+    }
+    /* Container for each section */
+    .container {
+      background: var(--color-bg-white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      padding: 20px 16px;
+      width: 320px;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+      border: 1px solid var(--color-border);
+    }
+    /* Top navigation with back arrow and label */
+    .nav-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-text-dark);
+      user-select: none;
+      cursor: pointer;
+    }
+    .nav-header svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--color-text-dark);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    /* Form inputs container */
+    .form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      user-select: none;
+    }
+    input[type="date"],
+    input[type="time"],
+    select {
+      border: 2px solid var(--color-primary);
+      border-radius: var(--border-radius);
+      padding: 8px 10px;
+      font-size: 1rem;
+      width: 100%;
+      cursor: pointer;
+      background-color: var(--color-bg-light);
+      transition: border-color var(--transition);
+    }
+    input[type="date"]:focus,
+    input[type="time"]:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 5px var(--color-primary-light);
+      background-color: var(--color-bg-white);
+    }
+    /* Truck selection list styling */
+    .trucks-list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .truck-item {
+      background-color: var(--color-bg-light);
+      border-radius: var(--border-radius);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background-color var(--transition), border-color var(--transition);
+      gap: 16px;
+    }
+    .truck-item:hover {
+      border-color: var(--color-primary);
+      background-color: #fff3d8;
+    }
+    .truck-item.selected {
+      background-color: var(--color-primary);
+      color: #fff;
+      border-color: var(--color-primary);
+    }
+    /* Truck icon container */
+    .truck-icon {
+      width: 60px;
+      height: 40px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      fill: none;
+      flex-shrink: 0;
+    }
+    .truck-info {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .truck-capacity {
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+    /* Book button */
+    .action-btn {
+      margin-top: 14px;
+      background-color: #121212;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .action-btn:hover {
+      background-color: #222222;
+    }
+    /* Confirm details section */
+    .confirm-block {
+      border-bottom: 2px solid var(--color-primary);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      color: var(--color-text-dark);
+    }
+    .confirm-truck-icon {
+      width: 48px;
+      height: 32px;
+      stroke: var(--color-text-dark);
+      stroke-width: 2;
+      fill: none;
+    }
+    .confirm-text {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--color-text-dark);
+    }
+    .confirm-capacity {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--color-primary);
+      margin-top: 4px;
+    }
+    /* Confirm date and time */
+    .confirm-datetime {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .confirm-datetime > div {
+      padding: 8px 12px;
+      background-color: var(--color-primary);
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      color: white;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    /* Location fields */
+    .location-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+    .location-value {
+      background-color: var(--color-primary);
+      color: white;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: text;
+    }
+    .location-value svg {
+      width: 16px;
+      height: 16px;
+      stroke: white;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex-shrink: 0;
+    }
+    /* Responsive tweaks */
+    @media (max-width: 355px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        width: 100%;
+        padding: 16px 12px;
+      }
+      .truck-icon {
+        width: 50px;
+        height: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Left Panel: Choose Truck -->
+  <section class="container" aria-label="Choose a truck panel">
+    <nav class="nav-header" aria-label="Go back">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      <span>Choose a truck</span>
+    </nav>
+
+    <form aria-labelledby="date-time-label goods-type-label" onsubmit="return false">
+      <div>
+        <label for="date" id="date-time-label">Select Date and Time</label>
+        <div class="form-row">
+          <input type="date" id="date" name="date" aria-required="true" aria-describedby="dateHelp" value="2024-03-25" />
+          <input type="time" id="time" name="time" aria-required="true" aria-describedby="timeHelp" value="13:00" />
+        </div>
+      </div>
+
+      <div style="margin-top: 12px;">
+        <label for="goodsType" id="goods-type-label">Goods Type</label>
+        <select id="goodsType" name="goodsType" aria-required="true" aria-describedby="goodsHelp">
+          <option value="house_shifting" selected>House Shifting</option>
+          <option value="electronics">Electronics</option>
+          <option value="furniture">Furniture</option>
+          <option value="construction_material">Construction Material</option>
+        </select>
+      </div>
+    </form>
+
+    <h3>Choose Trucks</h3>
+    <div class="trucks-list" role="radiogroup" aria-label="Select truck capacity">
+      <div class="truck-item" role="radio" tabindex="0" aria-checked="false" data-truck="LCV" aria-labelledby="label-lcv capacity-lcv" >
+        <svg class="truck-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 40">
+          <rect x="4" y="18" width="40" height="14" stroke="currentColor" fill="none" />
+          <path stroke="currentColor" d="M12 32v6M36 32v6M44 18h8l4 14h-14" />
+          <circle cx="18" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="36" cy="38" r="6" stroke="currentColor" fill="none" />
+        </svg>
+        <div class="truck-info">
+          <span id="label-lcv">LCV</span>
+          <span id="capacity-lcv" class="truck-capacity">Capacity: 2.5-7 Tons</span>
+        </div>
+      </div>
+
+      <div class="truck-item selected" role="radio" tabindex="0" aria-checked="true" data-truck="Open" aria-labelledby="label-open capacity-open">
+        <svg class="truck-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 40">
+          <rect x="4" y="18" width="40" height="14" stroke="currentColor" fill="none" />
+          <path stroke="currentColor" d="M44 18h14v14H44z" />
+          <circle cx="18" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="36" cy="38" r="6" stroke="currentColor" fill="none" />
+        </svg>
+        <div class="truck-info">
+          <span id="label-open">Open</span>
+          <span id="capacity-open" class="truck-capacity">Capacity: 7-11 Tons</span>
+        </div>
+      </div>
+
+      <div class="truck-item" role="radio" tabindex="0" aria-checked="false" data-truck="Dumper" aria-labelledby="label-dumper capacity-dumper">
+        <svg class="truck-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 40">
+          <rect x="6" y="22" width="44" height="12" stroke="currentColor" fill="none" />
+          <path stroke="currentColor" d="M36 20l8-10 8 10" fill="none" />
+          <circle cx="18" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="38" cy="38" r="6" stroke="currentColor" fill="none" />
+        </svg>
+        <div class="truck-info">
+          <span id="label-dumper">Dumper</span>
+          <span id="capacity-dumper" class="truck-capacity">Capacity: 9-16 Tons</span>
+        </div>
+      </div>
+
+      <div class="truck-item" role="radio" tabindex="0" aria-checked="false" data-truck="Tipper" aria-labelledby="label-tipper capacity-tipper">
+        <svg class="truck-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 40">
+          <rect x="6" y="16" width="36" height="18" stroke="currentColor" fill="none" />
+          <path stroke="currentColor" d="M42 16l10 10v8H42z" fill="none" />
+          <circle cx="18" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="38" cy="38" r="6" stroke="currentColor" fill="none" />
+        </svg>
+        <div class="truck-info">
+          <span id="label-tipper">Tipper</span>
+          <span id="capacity-tipper" class="truck-capacity">Capacity: 9-24 Tons</span>
+        </div>
+      </div>
+
+      <div class="truck-item" role="radio" tabindex="0" aria-checked="false" data-truck="Container" aria-labelledby="label-container capacity-container">
+        <svg class="truck-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 40">
+          <rect x="6" y="12" width="44" height="20" stroke="currentColor" fill="none" />
+          <path stroke="currentColor" d="M12 12v-6h34v6" fill="none" />
+          <circle cx="18" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="38" cy="38" r="6" stroke="currentColor" fill="none" />
+        </svg>
+        <div class="truck-info">
+          <span id="label-container">Container</span>
+          <span id="capacity-container" class="truck-capacity">Capacity: 9-30 Tons</span>
+        </div>
+      </div>
+
+      <div class="truck-item" role="radio" tabindex="0" aria-checked="false" data-truck="Trailer" aria-labelledby="label-trailer capacity-trailer">
+        <svg class="truck-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 40">
+          <rect x="6" y="12" width="32" height="24" stroke="currentColor" fill="none" />
+          <line x1="38" y1="12" x2="54" y2="12" stroke="currentColor" />
+          <circle cx="18" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="38" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="54" cy="38" r="6" stroke="currentColor" fill="none" />
+        </svg>
+        <div class="truck-info">
+          <span id="label-trailer">Trailer</span>
+          <span id="capacity-trailer" class="truck-capacity">Capacity: 16-43 Tons</span>
+        </div>
+      </div>
+
+      <div class="truck-item" role="radio" tabindex="0" aria-checked="false" data-truck="Tank" aria-labelledby="label-tank capacity-tank">
+        <svg class="truck-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 40">
+          <rect x="6" y="10" width="40" height="18" stroke="currentColor" fill="none" />
+          <ellipse cx="26" cy="19" rx="10" ry="12" stroke="currentColor" fill="none" />
+          <line x1="40" y1="28" x2="56" y2="28" stroke="currentColor" />
+          <circle cx="18" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="36" cy="38" r="6" stroke="currentColor" fill="none" />
+          <circle cx="54" cy="38" r="6" stroke="currentColor" fill="none" />
+        </svg>
+        <div class="truck-info">
+          <span id="label-tank">Tank</span>
+          <span id="capacity-tank" class="truck-capacity">Capacity: 20-36 Tons</span>
+        </div>
+      </div>
+    </div>
+    <button class="action-btn" aria-label="Book Pickup">Book Pickup</button>
+  </section>
+
+  <!-- Right Panel: Confirm Details -->
+  <section class="container" aria-label="Confirm details panel" style="max-width: 350px;">
+    <nav class="nav-header" aria-label="Go back">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      <span>back</span>
+    </nav>
+
+    <div class="confirm-block" role="region" aria-labelledby="confirmDetailsLabel">
+      <svg class="confirm-truck-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 36">
+        <rect x="4" y="12" width="40" height="14" stroke="black" fill="none" />
+        <path stroke="black" d="M44 12h14v14H44z" />
+        <circle cx="18" cy="32" r="6" stroke="black" fill="none" />
+        <circle cx="36" cy="32" r="6" stroke="black" fill="none" />
+      </svg>
+      <div>
+        <div id="confirmDetailsLabel" class="confirm-text">Open</div>
+        <div class="confirm-capacity">7-11 Tons</div>
+      </div>
+    </div>
+
+    <div class="confirm-datetime" aria-label="Selected date and time">
+      <div aria-label="Date selected">
+        <svg aria-hidden="true" focusable="false" width="16" height="16" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" style="margin-right:6px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 25/3/2024
+      </div>
+      <div aria-label="Time selected">
+        <svg aria-hidden="true" focusable="false" width="16" height="16" stroke="white" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" style="margin-right:6px;">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg> 1:00 PM
+      </div>
+    </div>
+
+    <div>
+      <div class="location-label">From Location:</div>
+      <div class="location-value" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M12 21c-4-4-6-10-6-13a6 6 0 1112 0c0 3-2 9-6 13z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="12" cy="8" r="2" stroke="currentColor" stroke-width="2" fill="none" />
+        </svg>
+        Sircilla, Sircilla mandal, Rajanna Sircilla District
+      </div>
+    </div>
+
+    <div style="margin-top: 12px;">
+      <div class="location-label">To Location:</div>
+      <div class="location-value" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M12 21c-4-4-6-10-6-13a6 6 0 1112 0c0 3-2 9-6 13z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="12" cy="8" r="2" stroke="currentColor" stroke-width="2" fill="none" />
+        </svg>
+        Hitech City, Hitec - Kukatpally Main Road, Kha
+      </div>
+    </div>
+    
+    <button class="action-btn" aria-label="Confirm Pickup" style="margin-top: 18px;">Confirm Pickup</button>
+  </section>
+
+  <script>
+    // Accessibility & Selection management for truck items
+    const truckItems = document.querySelectorAll(".truck-item");
+    truckItems.forEach(item => {
+      item.addEventListener("click", () => {
+        selectTruck(item);
+      });
+      item.addEventListener("keydown", e => {
+        if (e.key === " " || e.key === "Enter") {
+          e.preventDefault();
+          selectTruck(item);
+        }
+      });
+    });
+    function selectTruck(selected) {
+      truckItems.forEach(item => {
+        item.classList.remove("selected");
+        item.setAttribute("aria-checked", "false");
+        item.tabIndex = -1;
+      });
+      selected.classList.add("selected");
+      selected.setAttribute("aria-checked", "true");
+      selected.tabIndex = 0;
+      selected.focus();
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transmaa Orders UI</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    /* Global */
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1e1e1e;
+      line-height: 1.5;
+      padding: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 1.4rem;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #fafafa;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .section {
+      background-size: cover;
+      background-position: center;
+      border-radius: 14px;
+      padding: 20px 28px 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.4);
+      color: #fafafa;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255 255 255 / 0.15);
+      position: relative;
+      min-height: 220px;
+    }
+
+    /* Background images for sections */
+    #orders-waiting {
+      background-image: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3f80b4ff-27da-4914-83c7-2f7c91bb9a48.png');
+    }
+
+    #transmaa-accepted {
+      background-image: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/26151e92-460e-476a-bbde-2985fa59e404.png');
+    }
+
+    /* Card style */
+    .order-card {
+      background-color: rgba(0, 0, 0, 0.55);
+      border-radius: 10px;
+      padding: 14px 18px;
+      box-shadow: inset 0 0 8px rgba(255, 165, 0, 0.7);
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      line-height: 1.3;
+      color: #eee;
+      user-select: text;
+    }
+
+    .order-card strong {
+      color: #ffbe24;
+      font-weight: 600;
+    }
+
+    .order-card .field-label {
+      color: #ffbe24;
+      font-weight: 600;
+      display: block;
+      margin-top: 8px;
+      margin-bottom: 2px;
+    }
+
+    .order-buttons {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    button {
+      padding: 6px 14px;
+      font-size: 1rem;
+      border-radius: 26px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease-out;
+      color: #fff;
+      user-select: none;
+    }
+
+    button.accept-btn {
+      background-color: #25a232;
+      box-shadow: 0 4px 7px #1f8429cc;
+    }
+
+    button.accept-btn:hover {
+      background-color: #1b7a22;
+    }
+
+    button.reject-btn {
+      background-color: #c93737;
+      box-shadow: 0 4px 7px #982f2fcc;
+    }
+
+    button.reject-btn:hover {
+      background-color: #941f1f;
+    }
+
+    /* Bullet list below */
+    .notes-list {
+      margin-top: 20px;
+      padding-left: 20px;
+      font-size: 1rem;
+      color: #303030;
+    }
+
+    .notes-list li {
+      margin-bottom: 14px;
+    }
+
+    .notes-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .notes-list li strong {
+      color: #a72626;
+      font-weight: 700;
+    }
+
+
+    /* Responsive adjustments */
+
+    @media (max-width: 600px) {
+      body {
+        padding: 14px 12px;
+        max-width: 100%;
+      }
+
+      .section {
+        padding: 18px 16px 20px 16px;
+      }
+
+      .order-card {
+        font-size: 0.82rem;
+        padding: 12px 14px;
+      }
+
+      .order-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      button {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="section" id="orders-waiting" aria-label="Orders Waiting for acceptance">
+
+    <h2>Order's Waiting</h2>
+    <article class="order-card" aria-labelledby="customer1-label">
+      <div>
+        <span class="field-label">CustomerName:</span>
+        <span id="customer1-label">sai</span>
+      </div>
+      <div><strong>CustomerphoneNumber:</strong> +9170903124579</div>
+      <div><strong>Goods Type:</strong> Home Shifting</div>
+      <div><strong>Date:</strong> 2024-01-25 13:00:18:94</div>
+      <div><strong>Time:</strong> TimeOfDay(13:00)</div>
+      <div><strong>From:</strong> Sircilla, Sircilla mandal, Rajanna Sircilla District, Telangana, 505301, India</div>
+      <div><strong>To:</strong> Hitech City, Hitec - Kukatpally Main Road, Khanamet, Ward 116 Allapur, Greater Hyderabad Municipal Corporation West Zone, Hyderabad, Kukatpally mandal, Medchal-Malkajgiri District,
+        Telangana, 500081, India</div>
+
+      <p class="field-label" style="margin-top: 10px; font-weight: 600;">Truck Details:</p>
+      <div>Truck Name: Open</div>
+      <div>Truck Price: 0</div>
+      <div>Truck Weight Capacity: 7-11</div>
+
+      <div class="order-buttons">
+        <button class="accept-btn" aria-label="Accept order from customer sai">Accept</button>
+        <button class="reject-btn" aria-label="Reject order from customer sai">Reject</button>
+      </div>
+    </article>
+  </section>
+
+  <section class="section" id="transmaa-accepted" aria-label="Transmaa Accepted Orders">
+    <h2>Transmaa Accepted Order's</h2>
+
+    <article class="order-card" aria-labelledby="customer2-label">
+      <div>
+        <span class="field-label">Customer Name:</span>
+        <span id="customer2-label">sai</span>
+      </div>
+      <div><strong>Customer Phone Number:</strong> +911234545421</div>
+      <div><strong>Goods Type:</strong> Timber/Plywood/Laminate</div>
+      <div><strong>Date:</strong> 2024-01-19 22:58:59:877</div>
+      <div><strong>Time:</strong> TimeOfDay(22:58)</div>
+      <div><strong>From:</strong> Sr. Chamba, Chamba District, Himachal Pradesh, 176311,
+        India</div>
+      <div><strong>To:</strong> Yavat, Yavat Station Road, Yavat, Daund, Pune, Maharashtra, 412214, India</div>
+
+      <p class="field-label" style="margin-top: 10px; font-weight: 600;">Truck Details:</p>
+      <div>Truck Name: Open</div>
+      <div>Truck Price: null</div>
+      <div>Truck Weight Capacity: 7-11</div>
+    </article>
+
+    <article class="order-card" aria-labelledby="customer3-label">
+      <div>
+        <span class="field-label">Customer Name:</span>
+        <span id="customer3-label">sai</span>
+      </div>
+      <div><strong>Customer Phone Number:</strong> +9170903124579</div>
+      <div><strong>Goods Type:</strong> Home Shifting</div>
+      <div><strong>Date:</strong> 2024-01-25 13:00:18:94</div>
+      <div><strong>Time:</strong> TimeOfDay(13:00)</div>
+      <div><strong>From:</strong> Sircilla, Sircilla mandal, Rajanna Sircilla District, Telangana, 505301, India</div>
+      <div><strong>To:</strong> Hitech City, Hitec - Kukatpally Main Road, Khanamet, Ward 116 Allapur, Greater Hyderabad Municipal Corporation West Zone, Hyderabad, Kukatpally mandal, Medchal-Malkajgiri District,
+        Telangana, 500081, India</div>
+
+      <p class="field-label" style="margin-top: 10px; font-weight: 600;">Truck Details:</p>
+      <div>Truck Name: Open</div>
+      <div>Truck Price: null</div>
+      <div>Truck Weight Capacity: 7-11</div>
+    </article>
+  </section>
+
+  <section class="notes" aria-label="Process explanation and notes">
+    <ul class="notes-list">
+      <li>This load information will be displayed to the Drivers application, where the driver can accept the load. After the driver accepts the load. In the Transmaa dashboard these details will be displayed in Driver accepted orders.</li>
+      <li>If the driver accepts orders Transmaa confirms pickup details with the customer and updates the driver by sending a SMS.</li>
+      <li>After clicking on “Send message” both customer and driver will SMS and status changed to order on the way and after delivery status changes to delivered.</li>
+      <li>Customers receive updates once their loads are delivered.</li>
+      <li><strong style="color:#a72626;">Transmaa hides customer and driver information throughout the process. (How will the driver pick up the goods if does not know the contact details and place to pick up? How will the driver deliver the goods if he does not have the delivery address and personal details?)</strong></li>
+    </ul>
+  </section>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Driver Orders Status</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #111;
+      color: #f0f0f0;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .order-container {
+      border-radius: 12px;
+      color: #fff;
+      padding: 1.6rem 2rem 2rem 2rem;
+      box-shadow: 0 10px 25px rgb(0 0 0 / 0.7);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.3s ease;
+      overflow: hidden;
+      min-height: 360px;
+    }
+
+    .order-container:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 45px rgb(0 0 0 / 0.9);
+    }
+
+    /* Overlay gradient to improve text readability */
+    .order-container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.85) 100%);
+      pointer-events: none;
+      border-radius: 12px;
+      z-index: 0;
+    }
+
+    header {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      z-index: 1;
+      text-shadow: 0 0 5px rgba(0,0,0,0.9);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      max-height: 260px;
+      overflow-y: auto;
+      margin-bottom: 2rem;
+      padding-right: 10px;
+      white-space: pre-line;
+    }
+
+    strong {
+      color: #ffd700;
+      font-weight: 600;
+    }
+
+    .button {
+      position: absolute;
+      right: 1.5rem;
+      top: 1.3rem;
+      background-color: rgba(255 255 255 / 0.85);
+      color: #444;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.25s ease, color 0.25s ease;
+      z-index: 2;
+      user-select: none;
+    }
+    .button:hover {
+      background-color: #ffd700;
+      color: #222;
+    }
+
+    /* Specific backgrounds */
+    .accepted {
+      background-image: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/96cbb6a9-6886-4c02-9ea7-36fc82310044.png');
+      background-repeat: no-repeat;
+    }
+
+    .on-the-way {
+      background-image: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b97c30a8-b936-4c55-ab81-ed7a2bce13d7.png');
+      background-repeat: no-repeat;
+    }
+
+    /* Scrollbar styling for content */
+    .content::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .content::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 215, 0, 0.8);
+      border-radius: 3px;
+    }
+    .content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .order-container {
+        padding: 1.2rem 1.4rem 1.8rem 1.4rem;
+        min-height: 300px;
+      }
+
+      header {
+        font-size: 1.1rem;
+      }
+
+      .button {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.3rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="order-container accepted" aria-labelledby="accepted-orders-header">
+    <header id="accepted-orders-header" tabindex="0">Driver's Accepted Order's</header>
+    <button class="button" type="button" aria-label="Send Message to driver">Send Message</button>
+    <div class="content" tabindex="0" aria-describedby="accepted-orders-header">
+      <p><strong>Customer Name:</strong></p>
+      <p><strong>Customer Phone Number:</strong></p>
+      <p><strong>Driver Name: saiteja</strong></p>
+      <p><strong>Driver Phone Number:</strong> +917093124579</p>
+      <p><strong>Status:</strong> Accepted</p>
+      <p>Goods Type: House Shifting</p>
+      <p>Date: 2024-03-25 13:00:38.943</p>
+      <p>Time: TimeOfDay(13:00)</p>
+      <p>From: Sircilla, Sircilla mandal, Rajanna Sircilla District, Telangana, 505301, India</p>
+      <p>To: Hitech City, Hitec - Kukatpally Main Road, Khamnet, Ward 116 Allapur, Greater Hyderabad Municipal Corporation West Zone, Hyderabad, Kukatpally mandal, Medchal-Malkajgiri District, Telangana, 500081, India</p>
+      <p><strong>Truck Details:</strong></p>
+      <p>Truck Name: Open</p>
+      <p>Truck Price: null</p>
+      <p>Truck Weight Capacity: null</p>
+    </div>
+  </section>
+
+  <section class="order-container on-the-way" aria-labelledby="on-the-way-orders-header">
+    <header id="on-the-way-orders-header" tabindex="0">Order's on the way</header>
+    <button class="button" type="button" aria-label="Mark order as Delivered">Delivered</button>
+    <div class="content" tabindex="0" aria-describedby="on-the-way-orders-header">
+      <p><strong>Customer Name:</strong></p>
+      <p><strong>Customer Phone Number:</strong></p>
+      <p><strong>Driver Name: saiteja</strong></p>
+      <p><strong>Driver Phone Number:</strong> +917093124579</p>
+      <p><strong>Status:</strong> Order's to be delivered</p>
+      <p>Goods Type: House Shifting</p>
+      <p>Date: 2024-03-25 13:00:38.943</p>
+      <p>Time: TimeOfDay(13:00)</p>
+      <p>From: Sircilla, Sircilla mandal, Rajanna Sircilla District, Telangana, 505301, India</p>
+      <p>To: Hitech City, Hitec - Kukatpally Main Road, Khamnet, Ward 116 Allapur, Greater Hyderabad Municipal Corporation West Zone, Hyderabad, Kukatpally mandal, Medchal-Malkajgiri District, Telangana, 500081, India</p>
+      <p><strong>Truck Details:</strong></p>
+      <p>Truck Name: Open</p>
+      <p>Truck Price: null</p>
+      <p>Truck Weight Capacity: 7-11</p>
+    </div>
+  </section>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TransSmaa Driver Registration and Login</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fcf8f5;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 12px 0 40px;
+    }
+    a {
+      text-decoration: none;
+      color: #555;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #D97818;
+    }
+    /* Container */
+    .app-container {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      max-width: 920px;
+      width: 100%;
+      justify-content: center;
+    }
+    section {
+      width: 320px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 3px 14px rgb(0 0 0 / 0.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 520px;
+    }
+    /* Header */
+    .header {
+      background-color: #f7c7b2;
+      padding: 18px 20px 36px;
+      position: relative;
+      text-align: center;
+      color: #432f21;
+    }
+    .header svg {
+      width: 140px;
+      height: auto;
+      margin: 0 auto 8px;
+      display: block;
+      filter: drop-shadow(0 3px 3px rgba(0,0,0,0.07));
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 1.55rem;
+      font-weight: 600;
+      user-select: none;
+    }
+    .header .subtitle {
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 2px;
+      user-select: none;
+    }
+    /* Back arrow */
+    .back-arrow {
+      position: absolute;
+      left: 18px;
+      top: 20px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #432f21cc;
+      user-select: none;
+      transition: color 0.3s ease;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      font-weight: 600;
+      filter: drop-shadow(0 1px 0 rgba(0,0,0,0.1));
+    }
+    .back-arrow:hover {
+      color: #d97818;
+      background: rgba(255 255 255 / 0.4);
+    }
+    /* Form main */
+    form {
+      padding: 20px 24px 32px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      font-size: 0.92rem;
+      color: #382e27cc;
+    }
+    form label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      user-select:none;
+    }
+    /* Phone input container */
+    .phone-input-container {
+      display: flex;
+      align-items: center;
+      border: 1.8px solid #daaa6a;
+      border-radius: 8px;
+      padding: 6px 8px 6px 12px;
+      max-width: 280px;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+    .phone-input-container > span {
+      flex-shrink: 0;
+      font-weight: 700;
+      color: #d97818db;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      user-select: none;
+    }
+    .phone-input-container svg {
+      margin-left: 4px;
+      stroke: #b27f2e;
+      stroke-width: 2;
+      width: 18px;
+      height: 18px;
+    }
+    input[type="tel"] {
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      flex-grow: 1;
+      background: transparent;
+      padding: 8px 4px 8px 0;
+      color: #382e27cc;
+      font-weight: 500;
+    }
+    input[type="tel"]::placeholder {
+      color: #a8887b;
+      font-style: italic;
+    }
+    /* Underline bar below input */
+    .input-underline {
+      width: 280px;
+      height: 2px;
+      background-color: #e7cfa7;
+      margin-bottom: 24px;
+      border-radius: 1.5px;
+      user-select:none;
+    }
+    /* Divider with OR */
+    .divider-or {
+      text-align: center;
+      margin-bottom: 22px;
+      font-weight: 600;
+      color: #5f5044cc;
+      font-size: 0.85rem;
+      user-select:none;
+    }
+    /* Register link styling */
+    .register-link {
+      color: #434343cc;
+      font-weight: 700;
+      text-align: center;
+      border-bottom: 1.6px dotted #d97818cc;
+      padding-bottom: 2px;
+      margin-bottom: 48px;
+    }
+    .register-link:hover {
+      color: #d97818;
+      border-color: #d97818;
+    }
+    /* Submit button */
+    button.send-otp {
+      background-color: #d97818;
+      color: white;
+      border: none;
+      font-weight: 600;
+      padding: 14px 0;
+      font-size: 1.05rem;
+      border-radius: 24px;
+      cursor: pointer;
+      box-shadow: 0 3px 9px rgb(217 140 45 / 0.4);
+      transition: background-color 0.3s ease;
+      user-select:none;
+    }
+    button.send-otp:active {
+      background-color: #b66914;
+      box-shadow: 0 1.8px 5px rgb(182 105 20 / 0.65);
+      transform: translateY(1px);
+    }
+    /* ReCaptcha placeholder container */
+    .recaptcha-container {
+      margin-top: auto;
+      margin-left: auto;
+      user-select:none;
+      font-size: 0.6rem;
+      color: #a27e4a;
+      line-height: 1.1;
+      padding-right: 4px;
+      padding-top: 10px;
+    }
+    /* OTP verification screen styles */
+    .otp-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 20px 36px;
+    }
+    .otp-title {
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+      user-select:none;
+      color: #2d1f0f;
+      text-align: center;
+    }
+    .otp-instruction {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      color: #46311c;
+      text-align: center;
+      user-select:none;
+    }
+    /* OTP input boxes container */
+    .otp-inputs {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    /* Each OTP single digit box */
+    .otp-input {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: none;
+      background-color: #f1cccc;
+      color: #422f2f;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select:none;
+      box-shadow: inset 0 0 4px #c69696;
+      transition: box-shadow 0.3s ease;
+    }
+    .otp-input:focus {
+      outline: none;
+      box-shadow: 0 0 6px 2px #e0a689;
+      background-color: #efe3e3;
+      color: #5b4334;
+    }
+    /* OTP timer */
+    .otp-timer {
+      font-size: 0.8rem;
+      color: #d36f6f;
+      text-align: center;
+      margin-bottom: 8px;
+      user-select:none;
+    }
+    /* Resend OTP button */
+    .resend-btn {
+      user-select:none;
+      display: block;
+      margin: 0 auto;
+      padding: 8px 26px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      color: #a69c9c;
+      background-color: #eee;
+      pointer-events: none;
+      transition: background-color 0.3s, color 0.3s ease;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+      user-select:none;
+    }
+    .resend-btn.enabled {
+      pointer-events: auto;
+      background-color: #d97818;
+      color: white;
+      box-shadow: 0 3px 7px rgb(217 140 45 / 0.7);
+    }
+    .resend-btn.enabled:hover {
+      background-color: #b66914;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container" aria-label="TransSmaa Driver Registration and Login Screens">
+    <!-- Login Screen -->
+    <section aria-labelledby="login-title" aria-describedby="login-desc">
+      <div class="header" role="banner">
+        <button type="button" class="back-arrow" aria-label="Go back to previous page" disabled>&larr;</button>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 198 70" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TransSmaa logo">
+          <defs>
+            <linearGradient id="sunGradient" x1="124" y1="40" x2="164" y2="28" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ea6521"/>
+              <stop offset="1" stop-color="#f28930"/>
+            </linearGradient>
+          </defs>
+          <text fill="#211815" font-family="Arial Black, Arial" font-weight="700" font-size="40" letter-spacing="0.5px">
+            <tspan x="0" y="42">Tran</tspan>
+          </text>
+          <circle cx="160" cy="35" r="15" fill="url(#sunGradient)"/>
+          <path d="M149 20c4-5 9-8 15-8a22 22 0 0 1 15 5" stroke="url(#sunGradient)" stroke-width="4" stroke-linecap="round"/>
+          <text x="165" y="43" fill="#211815" font-family="Arial Black, Arial" font-weight="700" font-size="38" letter-spacing="0" dominant-baseline="middle">SMAA</text>
+        </svg>
+        <h1 id="login-title">Welcome</h1>
+        <p class="subtitle" id="login-desc" aria-hidden="true">"Unlock Your Journey"<br /> Register Today</p>
+      </div>
+      <form aria-label="Login form with phone input and register option" onsubmit="event.preventDefault(); alert('Send OTP clicked');">
+        <label for="phone">Login</label>
+        <div class="phone-input-container">
+          <span aria-hidden="true">+91 
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M2 17v-10a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5z"/>
+              <line x1="12" y1="8" x2="12" y2="16" />
+              <line x1="8" y1="12" x2="16" y2="12" />
+            </svg>
+          </span>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9]{10}" maxlength="10" placeholder="Enter your number" aria-required="true" required />
+        </div>
+        <div class="input-underline"></div>
+        <div class="divider-or" aria-hidden="true">OR</div>
+        <div style="text-align:center;margin-bottom:48px;">
+          <a href="#" id="register-link" class="register-link" role="button" aria-haspopup="dialog">Register A New Account?</a>
+        </div>
+        <button type="submit" class="send-otp" aria-label="Send one time password for login">Send OTP</button>
+        <div class="recaptcha-container" aria-live="polite" aria-atomic="true">reCAPTCHA placeholder - Privacy &amp; Terms</div>
+      </form>
+    </section>
+
+    <!-- OTP Verification Screen -->
+    <section aria-labelledby="otp-title" aria-describedby="otp-desc" hidden id="otp-screen">
+      <div class="header" role="banner">
+        <button type="button" class="back-arrow" aria-label="Go back to login screen" id="otp-back">&larr;</button>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 198 70" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TransSmaa logo">
+          <defs>
+            <linearGradient id="sunGradientOtp" x1="124" y1="40" x2="164" y2="28" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ea6521"/>
+              <stop offset="1" stop-color="#f28930"/>
+            </linearGradient>
+          </defs>
+          <text fill="#211815" font-family="Arial Black, Arial" font-weight="700" font-size="40" letter-spacing="0.5px">
+            <tspan x="0" y="42">Tran</tspan>
+          </text>
+          <circle cx="160" cy="35" r="15" fill="url(#sunGradientOtp)"/>
+          <path d="M149 20c4-5 9-8 15-8a22 22 0 0 1 15 5" stroke="url(#sunGradientOtp)" stroke-width="4" stroke-linecap="round"/>
+          <text x="165" y="43" fill="#211815" font-family="Arial Black, Arial" font-weight="700" font-size="38" letter-spacing="0" dominant-baseline="middle">SMAA</text>
+        </svg>
+        <h1 id="otp-title" style="color:#2e1e0e; user-select:none;margin-top:8px;">Welcome</h1>
+      </div>
+      <div class="otp-container">
+        <p class="otp-instruction" id="otp-desc">Verify your Phone Number</p>
+        <form id="otp-form" aria-label="OTP verification form" onsubmit="event.preventDefault(); alert('OTP Verified! Proceeding...');">
+          <div class="otp-inputs" role="group" aria-labelledby="otp-desc">
+            <input type="text" inputmode="numeric" pattern="[0-9]*" maxLength="1" class="otp-input" aria-label="OTP digit 1" required />
+            <input type="text" inputmode="numeric" pattern="[0-9]*" maxLength="1" class="otp-input" aria-label="OTP digit 2" required />
+            <input type="text" inputmode="numeric" pattern="[0-9]*" maxLength="1" class="otp-input" aria-label="OTP digit 3" required />
+            <input type="text" inputmode="numeric" pattern="[0-9]*" maxLength="1" class="otp-input" aria-label="OTP digit 4" required />
+            <input type="text" inputmode="numeric" pattern="[0-9]*" maxLength="1" class="otp-input" aria-label="OTP digit 5" required />
+            <input type="text" inputmode="numeric" pattern="[0-9]*" maxLength="1" class="otp-input" aria-label="OTP digit 6" required />
+          </div>
+          <div class="otp-timer" id="otp-timer" aria-live="polite" aria-atomic="true">93 seconds remaining</div>
+          <button type="submit" class="send-otp" style="width:100%; margin-bottom: 18px;">Verify OTP</button>
+        </form>
+        <button type="button" class="resend-btn" id="resend-otp" disabled aria-disabled="true" aria-live="polite">Resend OTP</button>
+        <div class="recaptcha-container" aria-live="polite" aria-atomic="true">reCAPTCHA placeholder - Privacy &amp; Terms</div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Show OTP screen and hide Login screen
+    const registerLink = document.getElementById('register-link');
+    const otpScreen = document.getElementById('otp-screen');
+    const loginSection = registerLink.closest('section');
+    const otpBackBtn = document.getElementById('otp-back');
+    const resendBtn = document.getElementById('resend-otp');
+    const otpTimerEl = document.getElementById('otp-timer');
+    const otpInputs = otpScreen.querySelectorAll('.otp-input');
+    const otpForm = document.getElementById('otp-form');
+
+    // Timer initial
+    let timerCountdown = 93;
+    let timerInterval;
+
+    // Function to start OTP resend timer
+    function startTimer() {
+      resendBtn.disabled = true;
+      resendBtn.setAttribute('aria-disabled', 'true');
+      resendBtn.classList.remove('enabled');
+      timerCountdown = 93;
+      updateTimerText();
+      timerInterval = setInterval(() => {
+        timerCountdown--;
+        updateTimerText();
+        if (timerCountdown <= 0) {
+          clearInterval(timerInterval);
+          resendBtn.disabled = false;
+          resendBtn.setAttribute('aria-disabled', 'false');
+          resendBtn.classList.add('enabled');
+          otpTimerEl.textContent = 'You may resend OTP now.';
+        }
+      }, 1000);
+    }
+    function updateTimerText() {
+      otpTimerEl.textContent = \`\${timerCountdown} second\${timerCountdown !== 1 ? 's' : ''} remaining\`;
+    }
+
+    // Go to OTP screen on register link click
+    registerLink.addEventListener('click', e => {
+      e.preventDefault();
+      loginSection.hidden = true;
+      otpScreen.hidden = false;
+      startTimer();
+      otpInputs[0].focus();
+    });
+
+    // Back to login from OTP screen
+    otpBackBtn.addEventListener('click', () => {
+      otpScreen.hidden = true;
+      loginSection.hidden = false;
+      clearInterval(timerInterval);
+    });
+
+    // OTP inputs auto focus next
+    otpInputs.forEach((input, idx) => {
+      input.addEventListener('input', e => {
+        const val = e.target.value;
+        if (!val.match(/^[0-9]$/)) {
+          e.target.value = '';
+          return;
+        }
+        if (idx < otpInputs.length - 1) {
+          otpInputs[idx + 1].focus();
+        }
+      });
+      input.addEventListener('keydown', e => {
+        if (e.key === "Backspace" && !e.target.value && idx > 0) {
+          otpInputs[idx -1].focus();
+        }
+      });
+    });
+
+    // Resend OTP handler
+    resendBtn.addEventListener('click', () => {
+      if (!resendBtn.disabled) {
+        alert('Resending OTP...');
+        startTimer();
+        otpInputs.forEach(i => (i.value = ''));
+        otpInputs[0].focus();
+      }
+    });
+
+    // Optional: Prevent form submits actually firing
+    otpForm.addEventListener('submit', e => {
+      // Ideally verify OTP here
+      e.preventDefault();
+      const otpValue = [...otpInputs].map(input => input.value).join('');
+      if (otpValue.length !== 6) {
+        alert('Please enter a 6 digit OTP');
+        return;
+      }
+      alert('OTP Verified! Proceeding...');
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TransSmaa Registration</title>
+  <style>
+    /* Reset & basics */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff8f6;
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px 0;
+    }
+
+    .container {
+      width: 360px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* HEADER */
+    header {
+      background: #f9d4c7;
+      padding: 24px 20px 28px;
+      text-align: center;
+      position: relative;
+    }
+
+    .back-arrow {
+      position: absolute;
+      top: 20px;
+      left: 15px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      color: #222;
+      user-select: none;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .back-arrow:hover {
+      color: #e86c23;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 28px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      color: #222222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .logo .s-part {
+      color: #f37322;
+      font-style: italic;
+      font-weight: 900;
+      position: relative;
+    }
+    .logo .sunray {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 18px;
+      background: url('https://placehold.co/28x18/orange?text=+') no-repeat center;
+      background-size: contain;
+    }
+    /* Because we cannot embed the exact logo, colored text with sun icon is used */
+
+    .welcome-title {
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .welcome-subtitle {
+      font-weight: 500;
+      font-size: 14px;
+      color: #6d6d6d;
+      font-style: italic;
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar {
+      display: flex;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      background: #fff3e0;
+    }
+    .progress-bar div {
+      flex: 1;
+      height: 4px;
+      margin: 0 3px;
+      border-radius: 2px;
+      background-color: #ccc;
+      transition: background-color 0.3s ease;
+      cursor: default;
+    }
+    .progress-bar div.active {
+      background-color: #f7931e;
+    }
+
+    /* FORM CONTENT */
+    form {
+      padding: 20px 25px 32px 25px;
+      font-size: 14px;
+      color: #222;
+    }
+
+    form h3 {
+      margin: 0 0 8px 0;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    /* Input group with country prefix and phone input */
+    .phone-group {
+      display: flex;
+      border: 2px solid #f7931e;
+      border-radius: 20px;
+      overflow: hidden;
+      max-width: 320px;
+      margin-bottom: 16px;
+    }
+    .country-code {
+      width: 50px;
+      background-color: #fff1d6;
+      border-right: 2px solid #f7931e;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f7931e;
+      font-size: 15px;
+      user-select: none;
+    }
+    .phone-input {
+      flex-grow: 1;
+      border: none;
+      padding: 10px 12px;
+      font-size: 15px;
+      outline: none;
+      color: #222;
+    }
+    .phone-input::placeholder {
+      color: #bbb;
+    }
+    .get-otp-btn {
+      background-color: #f7931e;
+      border: none;
+      color: white;
+      padding: 0 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 0 20px 20px 0;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .get-otp-btn:hover:not(:disabled) {
+      background-color: #dd7600;
+    }
+    .get-otp-btn:disabled {
+      background-color: #f0b666;
+      cursor: not-allowed;
+    }
+
+    /* OTP input container */
+    .otp-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .otp-input {
+      flex: 1;
+      min-width: 38px;
+      height: 44px;
+      background: #f9d4d9;
+      border-radius: 8px;
+      border: none;
+      font-size: 20px;
+      font-weight: 700;
+      color: #222;
+      text-align: center;
+      outline: none;
+      user-select: none;
+      caret-color: #f7931e;
+      transition: background-color 0.2s ease;
+    }
+    .otp-input:focus {
+      background: #ffe0e6;
+      box-shadow: 0 0 5px #f7931e88;
+    }
+
+    /* Resend text */
+    .resend-text {
+      text-align: center;
+      font-size: 12px;
+      color: #f4a460;
+      margin-top: -10px;
+      user-select: none;
+    }
+
+    /* Form fields for personal info and experience */
+    label {
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 4px;
+      display: block;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1.5px solid #9c0e14;
+      border-radius: 4px;
+      padding: 8px 10px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+      outline-offset: 1px;
+      margin-bottom: 18px;
+      color: #222;
+    }
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #f7931e;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 62px;
+    }
+
+    /* Upload pic circle container */
+    .upload-pic-container {
+      text-align: center;
+      margin-bottom: 18px;
+      user-select: none;
+    }
+    .upload-pic-label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .profile-pic-wrapper {
+      display: inline-block;
+      position: relative;
+      border-radius: 50%;
+      overflow: hidden;
+      width: 96px;
+      height: 96px;
+      background-color: #222;
+      cursor: pointer;
+      border: 2.5px solid #f7931e;
+      transition: box-shadow 0.3s ease;
+    }
+    .profile-pic-wrapper:hover {
+      box-shadow: 0 0 12px #f7931eaa;
+    }
+    .profile-pic-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .upload-icon {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      background: #f7931e;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 14px;
+      border: 2px solid white;
+      user-select: none;
+    }
+
+    /* Next arrow button */
+    .next-button {
+      position: fixed;
+      bottom: 30px;
+      right: 28px;
+      background: #d94b4b;
+      border: none;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      box-shadow: 0 6px 12px rgba(217, 75, 75, 0.5);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      z-index: 100;
+      border: 3px solid white;
+    }
+    .next-button:hover {
+      background-color: #c53f3f;
+    }
+
+    /* Icon: using svg arrow for back and next to keep crisp & accessible */
+    .icon-arrow-left::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-top: 2.2px solid currentColor;
+      border-left: 2.2px solid currentColor;
+      transform: rotate(-45deg);
+      margin-bottom: 2px;
+    }
+    .icon-arrow-right::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-top: 2.2px solid currentColor;
+      border-right: 2.2px solid currentColor;
+      transform: rotate(45deg);
+      margin-bottom: 2px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+
+    <!-- Header -->
+    <header>
+      <button class="back-arrow icon-arrow-left" aria-label="Go Back" onclick="handleBackClick()"></button>
+      <div class="logo" aria-label="TransSmaa Logo">
+        Tran<span class="s-part">S</span>maa
+      </div>
+      <div class="welcome-title">Welcome</div>
+      <div class="welcome-subtitle">"Unlock Your Journey"<br>Register Today</div>
+    </header>
+
+    <!-- Progress bar with 4 steps -->
+    <div class="progress-bar" aria-hidden="true">
+      <div class="active"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <!-- Step 1: Registration phone input and OTP -->
+    <form id="step-1">
+
+      <h3>Registration</h3>
+      <div class="phone-group">
+        <div class="country-code" aria-hidden="true">+91</div>
+        <input
+          class="phone-input"
+          type="tel"
+          inputmode="numeric"
+          id="phone"
+          placeholder="Phone Number"
+          aria-label="Phone number input"
+          maxlength="10"
+          pattern="[0-9]{10}"
+          required
+        />
+        <button type="button" id="get-otp-btn" class="get-otp-btn" aria-label="Get OTP">Get OTP</button>
+      </div>
+
+      <h3>OTP</h3>
+      <div class="otp-container" aria-label="OTP input fields">
+        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="OTP digit 1" />
+        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="OTP digit 2" />
+        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="OTP digit 3" />
+        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="OTP digit 4" />
+        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="OTP digit 5" />
+        <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="OTP digit 6" />
+      </div>
+
+      <div class="resend-text" id="resend-text">Resend OTP in 96 seconds</div>
+
+      <!-- Placeholder for recaptcha -->
+      <div style="margin-top: 28px; text-align: center; color: #999; font-size: 12px;">
+        reCAPTCHA widget placeholder
+      </div>
+    </form>
+
+    <!-- Step 2: Personal Information -->
+    <form id="step-2" style="display:none;">
+      <h3>Personal Information</h3>
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required />
+
+      <label for="dob">Date Of Birth</label>
+      <input type="date" id="dob" required />
+
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="" disabled selected>Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <label for="bio">Bio</label>
+      <textarea id="bio" placeholder="Write something about yourself..."></textarea>
+
+      <button type="button" class="next-button icon-arrow-right" title="Next Section" onclick="nextStep()"></button>
+
+      <!-- reCAPTCHA placeholder -->
+      <div style="position: fixed; bottom: 16px; right: 16px; font-size: 10px; color: #bbb; user-select:none;">
+        reCAPTCHA widget placeholder
+      </div>
+    </form>
+
+    <!-- Step 3: Experience and Data -->
+    <form id="step-3" style="display:none;">
+      <div class="upload-pic-container">
+        <label for="profile-pic" class="upload-pic-label">Upload pic</label>
+        <div class="profile-pic-wrapper" tabindex="0" role="button" aria-label="Upload profile picture" onclick="triggerUpload()" onkeypress="if(event.key==='Enter'){triggerUpload();}">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/08502d13-6623-43b2-a7be-620889828d46.png" 
+          alt="Circular placeholder profile picture of a representation of a dark-haired man with beard and blue shirt, icon style" onerror="this.style.display='none'"/>
+          <div class="upload-icon" aria-hidden="true"></div>
+        </div>
+        <input type="file" id="profile-pic" accept="image/*" style="display:none" onchange="handleFileUpload(event)" />
+      </div>
+
+      <h3>Experience and Data</h3>
+      <label for="experience">Year's Of Experience</label>
+      <input type="number" id="experience" min="0" max="100" placeholder="Enter years of experience" required />
+
+      <label for="vehicle-model">Mini/pickup</label>
+      <select id="vehicle-model" required>
+        <option value="" disabled selected>Select Vehicle Model</option>
+        <option>TATA ACE</option>
+        <option>Mahindra Supro</option>
+        <option>Piaggio Ape</option>
+        <option>Other</option>
+      </select>
+
+      <label for="vehicle-number">Vehicle Number</label>
+      <input type="text" id="vehicle-number" maxlength="15" placeholder="Enter vehicle number" required />
+
+      <label for="dl-number">DL Number</label>
+      <input type="text" id="dl-number" maxlength="20" placeholder="Enter driving license number" required />
+
+      <label for="pan-number">Pan Card Number</label>
+      <input type="text" id="pan-number" maxlength="20" placeholder="Enter PAN card number" required />
+
+      <button type="button" class="next-button icon-arrow-right" title="Submit Registration" onclick="submitForm()"></button>
+
+      <!-- reCAPTCHA placeholder -->
+      <div style="position: fixed; bottom: 16px; right: 16px; font-size: 10px; color: #bbb; user-select:none;">
+        reCAPTCHA widget placeholder
+      </div>
+    </form>
+
+  </div>
+
+<script>
+  // State and elements for step management
+  let currentStep = 1;
+  const totalSteps = 3;
+
+  const step1Form = document.getElementById('step-1');
+  const step2Form = document.getElementById('step-2');
+  const step3Form = document.getElementById('step-3');
+  const progressBar = document.querySelectorAll('.progress-bar div');
+
+  // Phone and OTP elements
+  const phoneInput = document.getElementById('phone');
+  const getOtpBtn = document.getElementById('get-otp-btn');
+  const otpInputs = document.querySelectorAll('.otp-input');
+  const resendText = document.getElementById('resend-text');
+
+  // OTP timer configuration
+  let resendSeconds = 96;
+  let otpTimer = null;
+
+  // Move focus automatically between OTP inputs on entry
+  otpInputs.forEach((input, idx) => {
+    input.addEventListener('input', (e) => {
+      const val = e.target.value;
+      // Allow only digits 0-9
+      if(!/^[0-9]$/.test(val)) {
+        e.target.value = '';
+        return;
+      }
+      if(idx < otpInputs.length -1) {
+        otpInputs[idx+1].focus();
+      }
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if(e.key === 'Backspace' && !e.target.value && idx > 0){
+        otpInputs[idx-1].focus();
+      }
+    });
+  });
+
+  // Handle Get OTP button click
+  getOtpBtn.addEventListener('click', () => {
+    const phoneValue = phoneInput.value.trim();
+    // Simple validation - 10-digit number
+    if(!/^\d{10}$/.test(phoneValue)) {
+      alert('Please enter a valid 10-digit phone number');
+      phoneInput.focus();
+      return;
+    }
+    // Simulate OTP send
+    alert('OTP sent to +' + phoneValue);
+    startOtpTimer();
+  });
+
+  // Start OTP resend timer countdown
+  function startOtpTimer(){
+    clearInterval(otpTimer);
+    resendSeconds = 96;
+    updateResendText();
+    getOtpBtn.disabled = true;
+    otpTimer = setInterval(() => {
+      resendSeconds--;
+      updateResendText();
+      if(resendSeconds <= 0) {
+        clearInterval(otpTimer);
+        resendText.textContent = 'You can resend OTP now.';
+        getOtpBtn.disabled = false;
+      }
+    }, 1000);
+  }
+
+  function updateResendText(){
+    resendText.textContent = `Resend OTP in ${resendSeconds} second${resendSeconds !== 1 ? 's' : ''}`;
+  }
+
+  // Progress bar update for step navigation
+  function updateProgressBar(step) {
+    progressBar.forEach((bar, i) => {
+      if(i < step) {
+        bar.classList.add('active');
+      } else {
+        bar.classList.remove('active');
+      }
+    });
+  }
+
+  // Navigation Back button simulation
+  function handleBackClick() {
+    if(currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+
+  // Show form step based on currentStep value
+  function showStep(step) {
+    step1Form.style.display = step === 1 ? 'block' : 'none';
+    step2Form.style.display = step === 2 ? 'block' : 'none';
+    step3Form.style.display = step === 3 ? 'block' : 'none';
+
+    updateProgressBar(step - 1);
+  }
+
+  // Next button in step 2 and 3
+  function nextStep() {
+    // Simple validation for step 2
+    if(currentStep === 2) {
+      const name = document.getElementById('name');
+      const dob = document.getElementById('dob');
+      const gender = document.getElementById('gender');
+      if(!name.value.trim()){
+        alert('Please enter your name.');
+        name.focus();
+        return;
+      }
+      if(!dob.value){
+        alert('Please select your date of birth.');
+        dob.focus();
+        return;
+      }
+      if(!gender.value){
+        alert('Please select your gender.');
+        gender.focus();
+        return;
+      }
+    }
+    currentStep++;
+    if(currentStep > totalSteps) currentStep = totalSteps;
+    showStep(currentStep);
+  }
+
+  // File upload trigger
+  function triggerUpload(){
+    document.getElementById('profile-pic').click();
+  }
+
+  // Display uploaded image preview
+  function handleFileUpload(e){
+    const input = e.target;
+    if(input.files && input.files[0]){
+      const reader = new FileReader();
+      reader.onload = function(event){
+        const imgTag = document.querySelector('.profile-pic-wrapper img');
+        imgTag.src = event.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // Final submit placeholder
+  function submitForm(){
+    // Very basic validation for step 3
+    const experience = document.getElementById('experience');
+    const vehicleModel = document.getElementById('vehicle-model');
+    const vehicleNumber = document.getElementById('vehicle-number');
+    const dlNumber = document.getElementById('dl-number');
+    const panNumber = document.getElementById('pan-number');
+
+    if(!experience.value || experience.value < 0){
+      alert('Please enter valid years of experience.');
+      experience.focus();
+      return;
+    }
+    if(!vehicleModel.value) {
+      alert('Please select your vehicle model.');
+      vehicleModel.focus();
+      return;
+    }
+    if(!vehicleNumber.value.trim()){
+      alert('Please enter your vehicle number.');
+      vehicleNumber.focus();
+      return;
+    }
+    if(!dlNumber.value.trim()){
+      alert('Please enter your DL number.');
+      dlNumber.focus();
+      return;
+    }
+    if(!panNumber.value.trim()){
+      alert('Please enter your PAN card number.');
+      panNumber.focus();
+      return;
+    }
+    alert('Registration submitted successfully!');
+  }
+
+  // Initial setup
+  showStep(currentStep);
+
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Check Details & Verification</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #f9f8fd;
+      color: #333;
+      line-height: 1.4;
+      padding: 10px;
+    }
+
+    /* Container for check details */
+    .check-details {
+      max-width: 400px;
+      margin: 15px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      overflow-y: auto;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      position: relative;
+      padding: 16px 0;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #5a4b8a;
+      border-bottom: 1px solid #dddbf0;
+    }
+    /* Back arrow */
+    .back-btn {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.3rem;
+      color: #5a4b8a;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+    }
+    .back-btn:hover {
+      color: #9165db;
+    }
+
+    /* Profile Section */
+    .profile-section {
+      padding: 24px 16px 8px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    .profile-label {
+      font-size: 0.875rem;
+      margin-bottom: 12px;
+      color: #615e75;
+      text-align: left;
+    }
+    .profile-image {
+      margin-bottom: 14px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #674ea7, #8a64d2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 14px rgba(103, 78, 167, 0.7);
+      overflow: hidden;
+    }
+    .profile-image img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 1px #3a3373a8);
+    }
+
+    /* Form Section */
+    form {
+      flex-grow: 1;
+      padding: 0 16px 16px;
+      overflow-y: auto;
+    }
+    /* Group form fields vertically */
+    .form-group {
+      margin-bottom: 14px;
+    }
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #524e62;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #faf9fc;
+      transition: border-color 0.3s ease;
+      color: #555;
+      user-select: text;
+    }
+    input[readonly] {
+      background-color: #faf9fc;
+      cursor: default;
+    }
+    input:focus {
+      outline: none;
+      border-color: #9165db;
+      background: #f4efff;
+      box-shadow: 0 0 10px #9165db55;
+    }
+
+    /* Button Start Your Journey */
+    .start-journey-btn-container {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+    button.start-journey-btn {
+      width: 100%;
+      background: #e03e3e;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px #e03e3e99;
+      transition: background-color 0.3s ease;
+    }
+    button.start-journey-btn:hover {
+      background-color: #b53131;
+      box-shadow: 0 5px 18px #b5313199;
+    }
+
+    /* ReCAPTCHA placeholder container */
+    .recaptcha-container {
+      margin: 15px 0 10px;
+      text-align: right;
+      user-select: none;
+      font-size: 0.75rem;
+      color: #8b8a98;
+    }
+
+    /* ---- Background Verification Screen ---- */
+    .verification-screen {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #f0f0f4;
+      border-radius: 25px 25px 0 0;
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.15);
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      text-align: center;
+      color: #222;
+      font-weight: 600;
+      font-size: 1.12rem;
+    }
+    .verification-screen .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 15px;
+      font-size: 1.4rem;
+      color: #555;
+      user-select: none;
+    }
+    .verification-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #4ade80; /* green-400 */
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px #4ade80bb;
+      margin-bottom: 30px;
+      font-size: 3.5rem;
+      line-height: 1;
+      user-select: none;
+    }
+    .progress-bar {
+      width: 250px;
+      height: 6px;
+      background-color: #dedede;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 14px auto 20px;
+      box-shadow: inset 0 1px 3px #bbb;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 55%;
+      background-color: #e03e3e;
+      border-radius: 5px 0 0 5px;
+      transition: width 0.4s ease;
+      box-shadow: 0 0 5px #e03e3e88;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Check Details Form -->
+  <div class="check-details" id="checkDetailsForm">
+    <div class="header">
+      <span class="back-btn" onclick="alert('Back clicked')">←</span>
+      Check Details
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-label">Profile</div>
+      <div class="profile-image" aria-label="User profile illustration of a man with beard and hairstyle, wearing a blue shirt">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ff2302a2-cc84-4309-ac93-09738b10f3fc.png" alt="Illustration of a man with short dark hair, beard, wearing a dark blue shirt on black background"/>
+      </div>
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" value="mahesh" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone number</label>
+        <input type="text" id="phone" value="+918688474431" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <input type="text" id="gender" value="Male" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" value="1999-04-01" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="dlnumber">DL Number</label>
+        <input type="text" id="dlnumber" value="IB34567890987654" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="bio">Bio</label>
+        <input type="text" id="bio" value="good" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="pan">PAN Number</label>
+        <input type="text" id="pan" value="LJKBH4567L" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleNumber">Vehicle Number</label>
+        <input type="text" id="vehicleNumber" value="TS23AB5029" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleModel">Vehicle Model</label>
+        <input type="text" id="vehicleModel" value="TATA ACE" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="experience">Experience</label>
+        <input type="number" id="experience" value="7" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleType">Vehicle Type</label>
+        <input type="text" id="vehicleType" value="Mini/pickup" readonly />
+      </div>
+
+      <div class="recaptcha-container">
+        <!-- Placeholder for reCAPTCHA -->
+        <small>reCAPTCHA placeholder</small>
+      </div>
+
+      <div class="start-journey-btn-container">
+        <button type="button" class="start-journey-btn">Start Your Journey</button>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- Background Verification Screen -->
+  <div class="verification-screen" id="verificationScreen" style="display:none;">
+    <span class="back-btn" onclick="alert('Back clicked')">←</span>
+    <div class="verification-icon" aria-label="Check mark indicating success verification">✔</div>
+    <div>Background Verification In Progress.....</div>
+    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="55">
+      <div class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TransSmaa Load Search</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff;
+      color: #333;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid #133240;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e0e0e0;
+      background-color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    /* Logo with custom style */
+    .logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      font-family: 'Arial Black', Gadget, sans-serif;
+      color: #132e3b;
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    .logo .highlight {
+      color: #e15322;
+      font-style: italic;
+      margin-left: 2px;
+      position: relative;
+    }
+
+    .logo .highlight::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 100%;
+      width: 24px;
+      height: 16px;
+      background: radial-gradient(circle at center, #e15322 30%, transparent 70%);
+      transform: translateX(3px);
+      clip-path: polygon(0 50%, 100% 0, 100% 100%);
+    }
+
+    header .icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    header .icons button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: #333;
+      font-size: 18px;
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    header .icons button:hover,
+    header .icons button:focus {
+      color: #e15322;
+      outline: none;
+    }
+
+    main {
+      flex: 1 1 auto;
+      padding: 12px 16px 80px; /* bottom padding 80 for bottom nav space */
+      background-color: #fdfcfb;
+    }
+
+    h2.greeting {
+      font-weight: 700;
+      margin-bottom: 18px;
+      font-size: 1.2rem;
+      color: #222;
+      user-select: none;
+    }
+
+    form.search-form {
+      border: 2px solid #e2b066;
+      border-radius: 8px;
+      padding: 16px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group input[type="text"] {
+      width: 100%;
+      padding: 12px 36px 12px 38px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    .input-group input[type="text"]:focus {
+      border-color: #e2b066;
+      outline: none;
+      box-shadow: 0 0 5px #e2b066aa;
+    }
+
+    /* Location icon on left inside input */
+    .input-group .icon-left {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #d14a4a;
+      font-size: 18px;
+      user-select: none;
+    }
+
+    /* Sort icon on right inside input for 'To' field */
+    .input-group .icon-right {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+      font-size: 18px;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    .input-group .icon-right:hover {
+      color: #e15322;
+    }
+
+    /* Radio button group styling */
+    .radio-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .radio-group input[type=radio] {
+      cursor: pointer;
+      accent-color: #e15322;
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
+
+    .radio-group label {
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    button.search-btn {
+      margin-top: 4px;
+      background-color: #978f9e;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      padding: 12px 0;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    button.search-btn:hover,
+    button.search-btn:focus {
+      background-color: #6b6581;
+      outline: none;
+    }
+
+    /* Result container (white with subtle shadow) */
+    .result-container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      color: #333;
+    }
+
+    /* Loading spinner styling */
+    .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #978f9e;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1.5s linear infinite;
+      margin: 36px auto;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0);}
+      100% { transform: rotate(360deg);}
+    }
+
+    /* Bottom navigation bar */
+    nav.bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-width: 420px;
+      background: #121212;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      user-select: none;
+      border-top: 1px solid #333;
+      z-index: 200;
+    }
+
+    nav.bottom-nav button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 12px;
+      flex-grow: 1;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 4px 4px;
+      transition: background-color 0.2s ease;
+    }
+
+    nav.bottom-nav button:hover,
+    nav.bottom-nav button:focus {
+      background-color: #2a2a2a;
+      outline: none;
+    }
+
+    nav.bottom-nav button .icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    /* Result detail page style */
+    .result-detail {
+      background-color: #3a9e41;
+      padding: 20px;
+      border-radius: 12px;
+      color: #f9f9f9;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      margin-top: 0;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    /* Scrollbar for result containers */
+    .result-container::-webkit-scrollbar,
+    .result-detail::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .result-container::-webkit-scrollbar-thumb,
+    .result-detail::-webkit-scrollbar-thumb {
+      background: #bbb;
+      border-radius: 4px;
+    }
+    .result-container::-webkit-scrollbar-track,
+    .result-detail::-webkit-scrollbar-track {
+      background: #eee;
+    }
+
+    /* Captcha container bottom right */
+    .captcha-container {
+      position: fixed;
+      bottom: 48px;
+      right: 8px;
+      z-index: 500;
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 500px) {
+      body {
+        border: none;
+        max-width: 100%;
+      }
+      nav.bottom-nav {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header role="banner" aria-label="Primary header with logo and icons">
+    <div class="logo" aria-label="TransSmaa logo">Trans<span class="highlight">Smaa</span></div>
+    <div class="icons" role="group" aria-label="Header action icons">
+      <button aria-label="Notifications" title="Notifications">
+        &#128276;
+      </button>
+      <button aria-label="Help and information" title="Help">
+        &#10068;
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="greeting" id="greeting">Hi saiteja..</h2>
+
+    <form class="search-form" id="searchForm" aria-describedby="searchDesc" aria-label="Load search form">
+      <div class="radio-group">
+        <input type="radio" id="fromRadio" name="locationRadio" checked aria-checked="true" aria-describedby="fromDesc" />
+        <label for="fromRadio">From</label>
+      </div>
+      <div class="input-group" aria-describedby="fromDesc">
+        <span class="icon-left" aria-hidden="true">&#128205;</span>
+        <input type="text" id="fromInput" name="from" placeholder="Sircilla, Sircilla mandal, Rajanna Sircilla District..." spellcheck="false" autocomplete="off" aria-required="true" />
+      </div>
+      <div id="fromDesc" class="sr-only">Starting location for the load search</div>
+
+      <div class="radio-group" aria-hidden="true" style="visibility:hidden; height:0; margin:0;">
+        <input type="radio" id="toRadio" name="locationRadio" aria-checked="false"/>
+        <label for="toRadio">To</label>
+      </div>
+      <label for="toInput">To</label>
+      <div class="input-group" aria-describedby="toDesc">
+        <span class="icon-left" aria-hidden="true">&#128205;</span>
+        <input type="text" id="toInput" name="to" placeholder="Hitech City, Hitec - Kukatpally Main Road..." spellcheck="false" autocomplete="off" aria-required="true" />
+        <span class="icon-right" aria-label="Sort locations" role="button" tabindex="0">&#8645;</span>
+      </div>
+      <div id="toDesc" class="sr-only">Ending location for the load search</div>
+
+      <button type="submit" class="search-btn" aria-label="Search loads">Search</button>
+    </form>
+
+    <div aria-live="polite" aria-atomic="true" class="loading-spinner" id="loadingSpinner" role="status" aria-label="Loading data"></div>
+
+    <section id="results" tabindex="0" aria-live="polite" aria-busy="false">
+      <!-- Results will appear here -->
+    </section>
+
+  </main>
+
+  <nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
+    <button aria-label="Loads" tabindex="0"><span class="icon">&#128230;</span>Loads</button>
+    <button aria-label="Sell and Buy" tabindex="0"><span class="icon">&#128178;</span>Sell & Buy</button>
+    <button aria-label="Finance and Insurance" tabindex="0"><span class="icon">&#127942;</span>Finance</button>
+    <button aria-label="Fuel" tabindex="0"><span class="icon">&#9889;</span>Fuel</button>
+  </nav>
+
+  <div class="captcha-container" aria-label="Captcha verification">
+    <iframe
+      src="https://www.google.com/recaptcha/api/fallback?k=your_site_key"
+      title="Captcha verification"
+      width="300" height="78"
+      frameborder="0"
+      scrolling="no"
+      aria-hidden="false"></iframe>
+  </div>
+
+  <script>
+    // Elements
+    const form = document.getElementById('searchForm');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const resultsSection = document.getElementById('results');
+    const fromInput = document.getElementById('fromInput');
+    const toInput = document.getElementById('toInput');
+
+    // Sample data returned/used for demonstration:
+    const exampleAvailableLoadsText = 
+      "Available Loads :\n\n" +
+      "From Location:\n" +
+      "Sircilla, Sircilla mandal, Rajanna Sircilla District, Telangana, 505301, India\n\n" +
+      "To Location:\n" +
+      "Hitech City, Hitec - Kukatpally Main Road, Khanmet, Ward 116 Allapur, Greater Hyderabad Municipal Corporation West Zone, Hyderabad, Kukatpally mandal, Medchal-Malkajgiri District, Telangana, 500081, India\n\n" +
+      "Goods Type: House Shifting\nDate: 2024-05-01\n\n" +
+      "Truck:\n(weightCapacity: 7-11, name: Open)";
+
+    const exampleLoadDetailText =
+      "From Location:\n" +
+      "Sircilla, Sircilla mandal, Rajanna Sircilla District, Telangana, 505301, India\n\n" +
+      "Time:\nTimeOfDay(13:00)\n\n" +
+      "Goods Type:\nHouse Shifting\n\n" +
+      "To Location:\nHitech City, Hitec - Kukatpally Main Road, Khanmet, Ward 116 Allapur, Greater Hyderabad Municipal Corporation West Zone, Hyderabad, Kukatpally mandal, Medchal-Malkajgiri District, Telangana, 500081, India\n\n" +
+      "Date:\nTimestamp(seconds=1711351838, nanoseconds=943000000)\n\n" +
+      "Truck:\n(weightCapacity: 7-11, name: Open)";
+
+    // Utility - simulate search delay (using promise)
+    function simulateSearch() {
+      return new Promise(resolve => {
+        setTimeout(() => resolve(exampleAvailableLoadsText), 2200);
+      });
+    }
+
+    // Utility - simulate detail fetch delay
+    function simulateFetchDetail() {
+      return new Promise(resolve => {
+        setTimeout(() => resolve(exampleLoadDetailText), 1500);
+      });
+    }
+
+    // Clear results and show loading spinner
+    function startLoading() {
+      loadingSpinner.style.display = "block";
+      resultsSection.innerHTML = "";
+      resultsSection.setAttribute('aria-busy', 'true');
+    }
+
+    // Stop loading spinner
+    function stopLoading() {
+      loadingSpinner.style.display = "none";
+      resultsSection.setAttribute('aria-busy', 'false');
+    }
+
+    // Escape HTML entities to render safely
+    function sanitizeHTML(str) {
+      return str.replace(/[&<>"']/g, function(m) {
+        return ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[m];
+      });
+    }
+
+    // Event: Search form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      if (!fromInput.value.trim() || !toInput.value.trim()) {
+        resultsSection.innerHTML = "<p role='alert' style='color: #b00020; padding: 10px;'>Please enter both From and To locations.</p>";
+        return;
+      }
+
+      startLoading();
+
+      try {
+        // Simulate fetch available loads from API or backend
+        const loads = await simulateSearch();
+
+        stopLoading();
+
+        // Show loads result container with available loads text
+        resultsSection.innerHTML = `
+          {<div class="result-container" tabindex="0" aria-label="Available loads">
+            <strong>Available Loads :</strong><br />
+            <pre style="white-space: pre-wrap;">${sanitizeHTML(loads)}</pre>
+          </div>
+        `;
+
+        // Add click to show load detail (for demo, only one loads text)
+        const containerDiv = resultsSection.querySelector('.result-container');
+        containerDiv.style.cursor = "pointer";
+        containerDiv.setAttribute('role', 'button');
+        containerDiv.setAttribute('tabindex', '0');
+        containerDiv.setAttribute('aria-pressed', 'false');
+        containerDiv.setAttribute('aria-describedby', 'loads-desc');
+        containerDiv.id = "loadsContainer";
+
+        containerDiv.addEventListener('click', async () => {
+          containerDiv.setAttribute('aria-pressed', 'true');
+          startLoading();
+          const details = await simulateFetchDetail();
+          stopLoading();
+          resultsSection.innerHTML = `
+            <section class="result-detail" tabindex="0" aria-label="Load detailed information">
+              <pre style="white-space: pre-wrap;">${sanitizeHTML(details)}</pre>
+            </section>
+          `;
+        });
+        containerDiv.addEventListener('keydown', async (ev) => {
+          if (ev.key === "Enter" || ev.key === " "){
+            ev.preventDefault();
+            containerDiv.click();
+          }
+        });
+
+      } catch (error) {
+        stopLoading();
+        resultsSection.innerHTML = "<p role='alert' style='color: #b00020;'>Failed to load data. Please try again later.</p>";
+      }
+    });
+
+    // Sort icon click on 'To' input (dummy handler for demonstration)
+    document.querySelector('.icon-right').addEventListener('click', () => {
+      alert('Sort locations clicked (functionality to be implemented)');
+    });
+    // keyboard accessible for "Sort locations"
+    document.querySelector('.icon-right').addEventListener('keydown', (ev) => {
+      if(ev.key === 'Enter' || ev.key === ' '){
+        ev.preventDefault();
+        ev.target.click();
+      }
+    });
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Commercial Vehicles Form</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      margin: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      padding: 20px 10px;
+    }
+    .app-container {
+      background: white;
+      max-width: 400px;
+      width: 100%;
+      height: 700px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+
+    /* Header */
+    .header {
+      position: relative;
+      padding: 12px 15px 20px 15px;
+      border-bottom: 1px solid #ddd;
+      flex-shrink: 0;
+    }
+    .logo {
+      font-weight: 900;
+      font-size: 20px;
+      font-family: 'Segoe UI Black', Tahoma, Geneva, Verdana, sans-serif;
+      color: #000;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+      user-select: none;
+      /* mimic TransSmaa logo style with orange detail */
+    }
+    .logo span {
+      color: #ec6604;
+      font-weight: 900;
+    }
+    .info-icon {
+      position: absolute;
+      top: 14px;
+      right: 15px;
+      width: 20px;
+      height: 20px;
+      border: 1.8px solid #999;
+      border-radius: 50%;
+      color: #999;
+      font-weight: bold;
+      text-align: center;
+      line-height: 18px;
+      cursor: pointer;
+      user-select: none;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Title with underline */
+    .title {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 14px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 6px;
+    }
+    .title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 30%;
+      right: 30%;
+      height: 2px;
+      background-color: #713b0e;
+      border-radius: 2px;
+      margin: auto;
+    }
+
+    /* Toggle container */
+    .toggle-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+    .toggle-button {
+      padding: 9px 26px;
+      border-radius: 35px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      min-width: 110px;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    /* Finance active */
+    .toggle-button.finance.active {
+      background-color: #3f7e35;
+    }
+    /* Insurance active */
+    .toggle-button.insurance.active {
+      background-color: #ec7d07;
+    }
+    /* Finance inactive - flipped colors */
+    .toggle-button.finance.inactive {
+      background-color: #ec7d07;
+    }
+    /* Insurance inactive - flipped colors */
+    .toggle-button.insurance.inactive {
+      background-color: #3f7e35;
+    }
+
+    /* Form */
+    form {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 0 20px;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      margin-left: 4px;
+    }
+    input[type="text"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 15px;
+      border: 1.5px solid #bbb;
+      border-radius: 8px;
+      outline-offset: 2px;
+      transition: border-color 0.25s ease;
+    }
+    input[type="text"]:focus,
+    input[type="tel"]:focus {
+      border-color: #ec7d07;
+      box-shadow: 0 0 6px #ec7d07aa;
+    }
+
+    /* Submit button */
+    button.submit-btn {
+      margin-top: 14px;
+      align-self: center;
+      background-color: #333;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 56px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    button.submit-btn:hover {
+      background-color: #555;
+    }
+
+    /* Bottom navigation */
+    .bottom-nav {
+      flex-shrink: 0;
+      background: #f1f1f1;
+      height: 60px;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #666;
+      user-select: none;
+    }
+    .bottom-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      cursor: pointer;
+      color: #666;
+      transition: color 0.25s ease;
+      font-family: Arial, sans-serif;
+    }
+    .bottom-item.active {
+      color: #ec7d07;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    /* Icon style with SVG fallback shape */
+    .bottom-item svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      pointer-events: none;
+    }
+
+    /* reCAPTCHA placeholder box */
+    .recaptcha-box {
+      position: absolute;
+      bottom: 63px;
+      right: 8px;
+      width: 115px;
+      height: 40px;
+      box-shadow: 0 0 3px #ccc;
+      border-radius: 4px;
+      background-image: url("https://www.google.com/recaptcha/api2/logo_48.png");
+      background-position: center right;
+      background-repeat: no-repeat;
+      background-size: contain;
+      user-select: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="app-container" role="main" aria-label="Commercial Vehicles form">
+    <header class="header">
+      <div class="logo" aria-label="TransSmaa logo">
+        Tran<span>S</span>maa
+      </div>
+      <div class="info-icon" aria-label="Information" tabindex="0" title="Information">?</div>
+      <h1 class="title">Commercial Vehicles</h1>
+      <div class="toggle-buttons" role="tablist" aria-label="Finance and Insurance tabs">
+        <button
+          id="btn-finance"
+          class="toggle-button finance active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="form-finance"
+          tabindex="0"
+          >Finance</button>
+        <button
+          id="btn-insurance"
+          class="toggle-button insurance inactive"
+          role="tab"
+          aria-selected="false"
+          aria-controls="form-insurance"
+          tabindex="-1"
+          >Insurance</button>
+      </div>
+    </header>
+
+    <form id="form-finance" tabindex="0" aria-labelledby="btn-finance" novalidate>
+      <label for="finance-name">Name</label>
+      <input type="text" id="finance-name" name="name" autocomplete="name" placeholder="" required />
+
+      <label for="finance-phone">Phone Number</label>
+      <input type="tel" inputmode="tel" pattern="[0-9\s\-\+\(\)]{7,20}" id="finance-phone" name="phone" placeholder="" autocomplete="tel" required />
+
+      <label for="finance-vehicle">Type of Vehicle</label>
+      <input type="text" id="finance-vehicle" name="vehicleType" placeholder="" required />
+
+      <label for="finance-rc">RC Number</label>
+      <input type="text" id="finance-rc" name="rcNumber" placeholder="" required />
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <form id="form-insurance" tabindex="0" aria-labelledby="btn-insurance" novalidate hidden>
+      <label for="insurance-name">Name</label>
+      <input type="text" id="insurance-name" name="name" autocomplete="name" placeholder="" required />
+
+      <label for="insurance-phone">Phone Number</label>
+      <input type="tel" inputmode="tel" pattern="[0-9\s\-\+\(\)]{7,20}" id="insurance-phone" name="phone" placeholder="" autocomplete="tel" required />
+
+      <label for="insurance-vehicle">Type of Vehicle</label>
+      <input type="text" id="insurance-vehicle" name="vehicleType" placeholder="" required />
+
+      <label for="insurance-rc">RC Number</label>
+      <input type="text" id="insurance-rc" name="rcNumber" placeholder="" required />
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <div class="recaptcha-box" aria-label="Google reCAPTCHA placeholder"></div>
+
+    <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
+      <div class="bottom-item" tabindex="0" aria-label="Loads">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 16h1v2h7v-2h1v4H3v-4zm0-3v-5a2 2 0 012-2h6v2H5v5H3zm17 3h-7v2h7v-2zm-3-15a2 2 0 012 2v5h-2V3zm-4 7h12v2H13z"/></svg>
+        Loads
+      </div>
+      <div class="bottom-item" tabindex="0" aria-label="Sell and Buy">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12l1.5 2 2-2L6.5 8 4 12zm16-1h-6v-2h6v2zm0 4h-6v-2h6v2z"/></svg>
+        Sell & Buy
+      </div>
+      <div class="bottom-item active" tabindex="0" aria-label="Finance and Insurance">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l5 9H7l5-9zM6 20h12l-6-11-6 11zM3 22h18v-2H3v2z"/></svg>
+        Finance & Insurance
+      </div>
+      <div class="bottom-item" tabindex="0" aria-label="Fuel">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 2h8v2H6V2zm8 12H6v8h8v-8zm-1-3H7v2h6v-2z"/></svg>
+        Fuel
+      </div>
+      <div class="bottom-item" tabindex="0" aria-label="Privacy and Terms">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a5 5 0 005-5V5H7v2a5 5 0 005 5zM6 22h12v-8H6v8z"/></svg>
+        Privacy - Terms
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    // Toggle logic for the forms and toggles
+    const btnFinance = document.getElementById('btn-finance');
+    const btnInsurance = document.getElementById('btn-insurance');
+    const formFinance = document.getElementById('form-finance');
+    const formInsurance = document.getElementById('form-insurance');
+
+    function activateFinance() {
+      btnFinance.classList.add('active');
+      btnFinance.classList.remove('inactive');
+      btnFinance.setAttribute('aria-selected', 'true');
+      btnFinance.setAttribute('tabindex', '0');
+
+      btnInsurance.classList.remove('active');
+      btnInsurance.classList.add('inactive');
+      btnInsurance.setAttribute('aria-selected', 'false');
+      btnInsurance.setAttribute('tabindex', '-1');
+
+      formFinance.hidden = false;
+      formInsurance.hidden = true;
+      formFinance.focus();
+    }
+    function activateInsurance() {
+      btnInsurance.classList.add('active');
+      btnInsurance.classList.remove('inactive');
+      btnInsurance.setAttribute('aria-selected', 'true');
+      btnInsurance.setAttribute('tabindex', '0');
+
+      btnFinance.classList.remove('active');
+      btnFinance.classList.add('inactive');
+      btnFinance.setAttribute('aria-selected', 'false');
+      btnFinance.setAttribute('tabindex', '-1');
+
+      formInsurance.hidden = false;
+      formFinance.hidden = true;
+      formInsurance.focus();
+    }
+
+    btnFinance.addEventListener('click', activateFinance);
+    btnInsurance.addEventListener('click', activateInsurance);
+
+    // Keyboard accessibility for tabs
+    [btnFinance, btnInsurance].forEach(btn => {
+      btn.addEventListener('keydown', e => {
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+          e.preventDefault();
+          if (btn === btnFinance) {
+            activateInsurance();
+            btnInsurance.focus();
+          } else {
+            activateFinance();
+            btnFinance.focus();
+          }
+        }
+      });
+    });
+
+  </script>
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Buy and Sell Platform - Commercial Vehicles</title>
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Container */
+  .container {
+    width: 100%;
+    max-width: 420px;
+    margin: 1rem auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+  }
+  header {
+    background: #e0e0e0;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  /* Logo */
+  .logo {
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: #d0481c;
+    letter-spacing: 0.05em;
+    user-select: none;
+  }
+  .logo span {
+    color: black;
+  }
+  /* Help icon */
+  .help-icon {
+    font-size: 22px;
+    color: #5a5a5a;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border: 2px solid #5a5a5a;
+  }
+
+  /* Title */
+  h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin: 12px 0 6px;
+    color: #222;
+    position: relative;
+  }
+  /* Underline for title */
+  h2::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 3px;
+    background: #b26e23;
+    margin: 4px auto 0;
+    border-radius: 2px;
+  }
+
+  /* Toggle Buy/Sell Tabs */
+  .toggle-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 0 0 12px;
+  }
+  .toggle-button {
+    padding: 10px 26px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 18px;
+    min-width: 100px;
+    user-select: none;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.12);
+  }
+  .buy-btn {
+    background-color: #1e4d23;
+    color: white;
+  }
+  .buy-btn.inactive {
+    background-color: #f5a623;
+    color: #1e4d23;
+    font-weight: 700;
+  }
+  .sell-btn {
+    background-color: #f5a623;
+    color: #1e4d23;
+  }
+  .sell-btn.inactive {
+    background-color: #1e4d23;
+    color: white;
+    font-weight: 700;
+  }
+
+  /* Buy Page List */
+  .buy-list {
+    background-color: #70a9ad;
+    border-radius: 10px 10px 10px 10px;
+    padding: 12px 12px 24px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .vehicle-card {
+    background: #9fc8ca;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    padding: 8px 12px;
+    align-items: center;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.12);
+  }
+  .vehicle-image {
+    flex-shrink: 0;
+    width: 96px;
+    height: 64px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgb(0 0 0 / 0.15);
+  }
+  .vehicle-info {
+    margin-left: 12px;
+    flex-grow: 1;
+    font-size: 0.88rem;
+    color: #1b2123;
+  }
+  .vehicle-info b {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 0.93rem;
+  }
+  /* Interest button */
+  .interest-btn {
+    background-color: #d7c8e3;
+    border-radius: 18px;
+    padding: 4px 16px;
+    margin-top: 10px;
+    font-size: 0.83rem;
+    color: #494059;
+    font-weight: 700;
+    align-self: start;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .interest-btn:hover {
+    background-color: #b4a2ca;
+    color: white;
+  }
+
+  /* Sell Page Form */
+  .sell-form {
+    padding: 16px 20px 28px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 24px rgb(0 0 0 / 0.15);
+    max-width: 100%;
+  }
+  .sell-form input[type="text"],
+  .sell-form input[type="tel"],
+  .sell-form input[type="number"] {
+    width: 100%;
+    border: 1.6px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+    transition: border-color 0.3s ease;
+  }
+  .sell-form input:focus {
+    border-color: #f5a623;
+    outline: none;
+    box-shadow: 0 0 8px #f5a623a0;
+  }
+
+  /* Upload images container */
+  .image-upload-container {
+    margin: 16px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .upload-box {
+    background-color: #dbe8f4;
+    flex: 1;
+    border-radius: 8px;
+    padding: 8px 6px 10px;
+    box-shadow: inset 0 3px 6px rgb(0 0 0 / 0.06);
+    text-align: center;
+    font-size: 0.86rem;
+    color: #344674;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .upload-box input[type="file"] {
+    display: none;
+  }
+  .upload-box label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  .upload-box .camera-icon {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #5c76a7;
+  }
+  /* Save button */
+  .save-button {
+    background-color: #d53333;
+    color: white;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 22px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    box-shadow: 0 5px 13px rgb(213 51 51 / 0.72);
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .save-button:hover {
+    background-color: #a72929;
+  }
+
+  /* Bottom navigation */
+  .bottom-nav {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 4px 12px;
+    font-size: 0.85rem;
+    color: #777;
+    border-top: 1px solid #ddd;
+    background: white;
+    user-select: none;
+  }
+  .bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #a18824;
+    font-weight: 600;
+    cursor: default;
+  }
+
+  /* Tab container to switch between Buy and Sell */
+  #buy-tab, #sell-tab {
+    display: none;
+  }
+  #buy-tab.active, #sell-tab.active {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="container" role="main" aria-label="Buy and Sell Platform for Commercial Vehicles">
+
+<header>
+  <div class="logo" aria-label="Transmaa company logo"><span>Trans</span>maa</div>
+  <div class="help-icon" role="button" tabindex="0" aria-label="Help information">?</div>
+</header>
+
+<h2>Commercial Vehicles</h2>
+
+<div class="toggle-buttons" role="tablist" aria-label="Choose between Buy and Sell tabs">
+  <button id="buy-btn" class="toggle-button buy-btn" aria-selected="true" role="tab" aria-controls="buy-tab" tabindex="0">BUY</button>
+  <button id="sell-btn" class="toggle-button sell-btn inactive" aria-selected="false" role="tab" aria-controls="sell-tab" tabindex="-1">SELL</button>
+</div>
+
+<!-- Buy Section -->
+<section id="buy-tab" class="active" role="tabpanel" aria-labelledby="buy-btn" tabindex="0">
+  <div class="buy-list" aria-live="polite" aria-relevant="additions removals">
+    <article class="vehicle-card" tabindex="0" aria-label="Vehicle kia carnival model, year 2021, interested buyers can inquire">
+      <div class="vehicle-image">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8835972a-0813-4144-90ba-bd7a048ca562.png" alt="Commercial vehicle black SUV in sunset, front angled view on street"/>
+      </div>
+      <div class="vehicle-info">
+        <b>kia</b>
+        <span>Vehicle Model: carnival</span><br />
+        <span>Years of Vehicle: 2021</span><br />
+        <button class="interest-btn" aria-label="Click to express interest to buy kia carnival vehicle">Interested to buy</button>
+      </div>
+    </article>
+    <article class="vehicle-card" tabindex="0" aria-label="Vehicle mahindra tuv300 model, year 2017, interested buyers can inquire">
+      <div class="vehicle-image">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1fb5d7a1-e55c-4989-847a-05d1b346cc78.png" alt="Commercial vehicle black SUV in sunset, front angled view on street"/>
+      </div>
+      <div class="vehicle-info">
+        <b>mahindra</b>
+        <span>Vehicle Model: tuv300</span><br />
+        <span>Years of Vehicle: 2017</span><br />
+        <button class="interest-btn" aria-label="Click to express interest to buy mahindra tuv300 vehicle">Interested to buy</button>
+      </div>
+    </article>
+    <article class="vehicle-card" tabindex="0" aria-label="Vehicle tata alto model, year 2017, interested buyers can inquire">
+      <div class="vehicle-image">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f19094c9-f0f1-4509-8de5-8522a004900a.png" alt="Compact red small vehicle angled front view on white background"/>
+      </div>
+      <div class="vehicle-info">
+        <b>tata</b>
+        <span>Vehicle Model: alto</span><br />
+        <span>Years of Vehicle: 2017</span><br />
+        <button class="interest-btn" aria-label="Click to express interest to buy tata alto vehicle">Interested to buy</button>
+      </div>
+    </article>
+    <article class="vehicle-card" tabindex="0" aria-label="Vehicle mahindra xuv model, year 2019, interested buyers can inquire">
+      <div class="vehicle-image">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e31eea5f-6f94-4a7d-b19f-ef0242cc4d93.png" alt="Sports car orange color front angled view on black background"/>
+      </div>
+      <div class="vehicle-info">
+        <b>mahindra</b>
+        <span>Vehicle Model: xuv</span><br />
+        <span>Years of Vehicle: 2019</span><br />
+        <button class="interest-btn" aria-label="Click to express interest to buy mahindra xuv vehicle">Interested to buy</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Sell Section -->
+<section id="sell-tab" role="tabpanel" aria-labelledby="sell-btn" tabindex="0">
+  <form class="sell-form" aria-label="Vehicle details upload form" novalidate>
+    <input type="text" name="name" placeholder="Name" aria-required="true" autocomplete="name" />
+    <input type="tel" name="phone" placeholder="Phone Number" aria-required="true" autocomplete="tel" pattern="[0-9\s+-]{7,15}" title="Please enter a valid phone number"/>
+    <input type="text" name="vehicleNo" placeholder="Vehicle No" aria-required="true" />
+    <input type="text" name="vehicleModel" placeholder="Vehicle Model" aria-required="true" />
+    <input type="text" name="rcNo" placeholder="RC No" aria-required="true" />
+    <input type="number" name="yearVehicle" placeholder="Years of Vehicle" aria-required="true" min="1900" max="2099" step="1" />
+
+    <fieldset class="image-upload-container" aria-label="Upload images of vehicle">
+      <legend style="margin-bottom: 4px; font-weight: 700; font-size: 0.95rem; color:#555;">Upload Images</legend>
+
+      <!-- Front side -->
+      <div class="upload-box" tabindex="0">
+        <label for="front-image" aria-label="Upload front side image of vehicle">
+          <span class="camera-icon" aria-hidden="true">📷</span>
+          Front side
+          <input type="file" id="front-image" accept="image/*" aria-describedby="front-desc" />
+        </label>
+        <span id="front-desc" class="sr-only">Upload front side vehicle photo</span>
+      </div>
+
+      <!-- Back side -->
+      <div class="upload-box" tabindex="0">
+        <label for="back-image" aria-label="Upload back side image of vehicle">
+          <span class="camera-icon" aria-hidden="true">📷</span>
+          Back side
+          <input type="file" id="back-image" accept="image/*" aria-describedby="back-desc" />
+        </label>
+        <span id="back-desc" class="sr-only">Upload back side vehicle photo</span>
+      </div>
+
+      <!-- Right side -->
+      <div class="upload-box" tabindex="0">
+        <label for="right-image" aria-label="Upload right side image of vehicle">
+          <span class="camera-icon" aria-hidden="true">📷</span>
+          Right side
+          <input type="file" id="right-image" accept="image/*" aria-describedby="right-desc" />
+        </label>
+        <span id="right-desc" class="sr-only">Upload right side vehicle photo</span>
+      </div>
+
+      <!-- Left side -->
+      <div class="upload-box" tabindex="0">
+        <label for="left-image" aria-label="Upload left side image of vehicle">
+          <span class="camera-icon" aria-hidden="true">📷</span>
+          Left side
+          <input type="file" id="left-image" accept="image/*" aria-describedby="left-desc" />
+        </label>
+        <span id="left-desc" class="sr-only">Upload left side vehicle photo</span>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="save-button" aria-label="Save vehicle data and upload to Transmaa platform">Save Data</button>
+  </form>
+</section>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav" aria-label="Main navigation">
+  <div class="nav-item" tabindex="0" aria-current="false">🚚 Loads</div>
+  <div class="nav-item" tabindex="0" aria-current="true" style="color:#a18824;">🏷 Sell & Buy</div>
+  <div class="nav-item" tabindex="0" aria-current="false">🏦 Finance & Insurance</div>
+  <div class="nav-item" tabindex="0" aria-current="false">⛽ Fuel</div>
+  <div class="nav-item" tabindex="0" aria-current="false">📃 Privacy & Terms</div>
+</nav>
+
+<script>
+  // Tab switching logic between Buy and Sell pages
+  const buyBtn = document.getElementById('buy-btn');
+  const sellBtn = document.getElementById('sell-btn');
+  const buyTab = document.getElementById('buy-tab');
+  const sellTab = document.getElementById('sell-tab');
+
+  function activateTab(tab) {
+    if (tab === 'buy') {
+      buyBtn.classList.remove('inactive');
+      buyBtn.setAttribute('aria-selected', 'true');
+      buyBtn.tabIndex = 0;
+      sellBtn.classList.add('inactive');
+      sellBtn.setAttribute('aria-selected', 'false');
+      sellBtn.tabIndex = -1;
+
+      buyTab.classList.add('active');
+      sellTab.classList.remove('active');
+      buyTab.tabIndex = 0;
+      sellTab.tabIndex = -1;
+    } else {
+      sellBtn.classList.remove('inactive');
+      sellBtn.setAttribute('aria-selected', 'true');
+      sellBtn.tabIndex = 0;
+      buyBtn.classList.add('inactive');
+      buyBtn.setAttribute('aria-selected', 'false');
+      buyBtn.tabIndex = -1;
+
+      sellTab.classList.add('active');
+      buyTab.classList.remove('active');
+      sellTab.tabIndex = 0;
+      buyTab.tabIndex = -1;
+    }
+  }
+
+  buyBtn.addEventListener('click', () => activateTab('buy'));
+  sellBtn.addEventListener('click', () => activateTab('sell'));
+
+  // Interested to Buy button alerts showing user interest (simulate sending info to Transmaa server)
+  const interestButtons = document.querySelectorAll('.interest-btn');
+  interestButtons.forEach(button => {
+    button.addEventListener('click', e => {
+      const vehicleName = e.target.closest('.vehicle-info').querySelector('b').textContent;
+      alert(Thank you for your interest in buying the ${vehicleName} vehicle. Transmaa will contact you shortly.);
+      // Here integration with backend to send data can happen
+    });
+  });
+
+  // Form submit handler (mock)
+  const sellForm = document.querySelector('.sell-form');
+  sellForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Validate files count (4 photos required)
+    const fileInputs = [
+      sellForm.querySelector('#front-image').files[0],
+      sellForm.querySelector('#back-image').files[0],
+      sellForm.querySelector('#right-image').files[0],
+      sellForm.querySelector('#left-image').files[0]
+    ];
+    const filesUploaded = fileInputs.filter(f => f !== undefined).length;
+
+    if (filesUploaded < 4) {
+      alert('Please upload all 4 photos: front, back, right, and left sides of the vehicle.');
+      return;
+    }
+
+    // Validate all text inputs non-empty
+    const inputs = sellForm.querySelectorAll('input[type="text"], input[type="tel"], input[type="number"]');
+    for (const input of inputs) {
+      if (!input.value.trim()) {
+        alert(Please fill in the ${input.placeholder} field.);
+        input.focus();
+        return;
+      }
+    }
+
+    // Mock submission success
+    alert('Vehicle details saved successfully and sent for verification to Transmaa.');
+
+    // Reset the form to blank after submission
+    sellForm.reset();
+  });
+
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Commercial Vehicles Form</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f6f7f9;
+    margin: 0;
+    padding: 0;
+    color: #222;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 60px;
+  }
+  .container {
+    width: 360px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow:
+      0 6px 12px rgba(0,0,0,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  header {
+    background: #dddde1;
+    border-radius: 14px 14px 0 0;
+    padding: 10px 18px 14px;
+    position: relative;
+    box-shadow: inset 0 -3px 8px rgba(0,0,0,0.07);
+  }
+  .logo {
+    font-weight: 700;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    color: #1a1a1a;
+  }
+  .logo span {
+    color: #e8431f; /* red accent color */
+  }
+  .help-icon {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    width: 18px;
+    height: 18px;
+    color: #777;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 18px;
+    user-select: none;
+  }
+  .help-icon:hover {
+    color: #e8431f;
+  }
+
+  /* Title */
+  .form-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin: 20px 0 14px 0;
+  }
+  .underline {
+    width: 120px;
+    height: 2px;
+    background: #544846;
+    border-radius: 2px;
+    margin: 0 auto 20px;
+    box-shadow:
+      0 1px 3px rgba(84, 72, 70, 0.6);
+  }
+
+  /* Button toggle */
+  .btn-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 18px;
+  }
+  .btn-toggle button {
+    flex: 1 1 120px;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 0;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgb(0,0,0,0.18);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    user-select: none;
+  }
+  .btn-buy {
+    background-color: #f2a33c;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .btn-buy:hover {
+    background-color: #d48824;
+  }
+  .btn-sell {
+    background-color: #235829;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .btn-sell:hover {
+    background-color: #1b4320;
+  }
+
+  /* Form */
+  form {
+    background: #fff;
+    margin: 0 20px 30px;
+    padding: 16px 16px 24px;
+    box-shadow:
+      0 7px 14px rgba(107,91,91,0.1);
+    border-radius: 12px;
+  }
+  form input[type="text"],
+  form input[type="tel"] {
+    width: 100%;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 10px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.07);
+    transition: border-color 0.3s ease;
+  }
+  form input[type="text"]:focus,
+  form input[type="tel"]:focus {
+    border-color: #e8431f;
+    outline: none;
+    box-shadow:
+      0 0 8px #f0a854,
+      inset 0 1px 6px #f6bb6a;
+  }
+
+  /* Upload Images section */
+  .upload-section {
+    margin: 0 20px 28px;
+  }
+  .upload-section > label {
+    display: block;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+  .upload-cards {
+    display: flex;
+    gap: 12px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .upload-card {
+    flex: 1 1 20%;
+    background-color: #cee7f5;
+    border-radius: 14px;
+    height: 110px;
+    box-shadow: inset 0 2px 8px rgba(41, 58, 83, 0.11);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+  }
+  .upload-card:hover {
+    background-color: #bae0ff;
+  }
+  .upload-label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #33475b;
+    user-select: none;
+  }
+  .upload-card input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    border-radius: 14px;
+  }
+  .camera-icon {
+    width: 34px;
+    height: 34px;
+    fill: #364a6d;
+    user-select: none;
+  }
+
+  /* Save Data button */
+  .save-btn-wrapper {
+    text-align: center;
+    margin: 0 20px 30px;
+  }
+  .save-btn {
+    background-color: #e03c3c;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 12px 36px;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow:
+      0 3px 10px rgba(224, 60, 60, 0.5);
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .save-btn:hover {
+    background-color: #ab2b2b;
+  }
+
+  /* Bottom Nav */
+  nav.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 360px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0 4px;
+    box-shadow: 0 -3px 12px rgba(0,0,0,0.06);
+    border-radius: 0 0 14px 14px;
+    user-select: none;
+    z-index: 99;
+  }
+  nav.bottom-nav .nav-item {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+    padding: 8px 0 6px;
+    cursor: pointer;
+    transition: color 0.25s ease;
+  }
+  nav.bottom-nav .nav-item svg {
+    display: block;
+    margin: 0 auto 4px;
+    fill: #999;
+    max-width: 22px;
+    max-height: 22px;
+  }
+  nav.bottom-nav .nav-item.active,
+  nav.bottom-nav .nav-item:hover {
+    color: #e03c3c;
+  }
+  nav.bottom-nav .nav-item.active svg,
+  nav.bottom-nav .nav-item:hover svg {
+    fill: #e03c3c;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container" role="main" aria-label="Commercial vehicles form">
+
+  <header>
+    <div class="logo" aria-label="TransSmaa brand logo">
+      Tran<span>S</span>maa
+    </div>
+    <div class="help-icon" role="button" aria-label="Help and information" tabindex="0" title="Help & Info">?</div>
+  </header>
+
+  <h1 class="form-title">Commercial Vehicles</h1>
+  <div class="underline"></div>
+
+  <div class="btn-toggle" role="group" aria-label="Buy or sell toggle buttons">
+    <button type="button" class="btn-buy" aria-pressed="true" aria-label="Buy commercial vehicle option">BUY</button>
+    <button type="button" class="btn-sell" aria-pressed="false" aria-label="Sell commercial vehicle option">SELL</button>
+  </div>
+
+  <form id="vehicle-form" novalidate>
+    <input type="text" id="name" name="name" placeholder="Name" autocomplete="name" aria-label="Name" required />
+    <input type="tel" id="phone" name="phone" placeholder="Phone Number" autocomplete="tel" aria-label="Phone Number" required pattern="[0-9+\-\s]{7,15}" title="Please enter a valid phone number" />
+    <input type="text" id="vehicleNo" name="vehicleNo" placeholder="Vehicle No" aria-label="Vehicle Number" required />
+    <input type="text" id="vehicleModel" name="vehicleModel" placeholder="Vehicle Model" aria-label="Vehicle Model" required />
+    <input type="text" id="rcNo" name="rcNo" placeholder="RC No" aria-label="RC Number" required />
+    <input type="text" id="vehicleYears" name="vehicleYears" placeholder="Years of Vehicle" aria-label="Years of Vehicle" required pattern="^[0-9]{1,2}$" title="Please enter years in numbers" />
+  </form>
+
+  <div class="upload-section" aria-label="Upload vehicle images">
+    <label>Upload Images</label>
+    <div class="upload-cards">
+      <div class="upload-card" tabindex="0" aria-label="Upload front side image">
+        <div class="upload-label">Front side</div>
+        <svg class="camera-icon" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M20 5h-3.172l-1.414-1.414A2 2 0 0013.172 3H10.828a2 2 0 00-1.414.586L8 5H5c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zM12 17a4 4 0 110-8 4 4 0 010 8zM7.5 12a.5.5 0 100-1 .5.5 0 000 1z"/>
+        </svg>
+        <input type="file" accept="image/*" aria-label="Upload front side image file" />
+      </div>
+      <div class="upload-card" tabindex="0" aria-label="Upload back side image">
+        <div class="upload-label">Back side</div>
+        <svg class="camera-icon" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M20 5h-3.172l-1.414-1.414A2 2 0 0013.172 3H10.828a2 2 0 00-1.414.586L8 5H5c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zM12 17a4 4 0 110-8 4 4 0 010 8zM7.5 12a.5.5 0 100-1 .5.5 0 000 1z"/>
+        </svg>
+        <input type="file" accept="image/*" aria-label="Upload back side image file" />
+      </div>
+      <div class="upload-card" tabindex="0" aria-label="Upload right side image">
+        <div class="upload-label">Right side</div>
+        <svg class="camera-icon" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M20 5h-3.172l-1.414-1.414A2 2 0 0013.172 3H10.828a2 2 0 00-1.414.586L8 5H5c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zM12 17a4 4 0 110-8 4 4 0 010 8zM7.5 12a.5.5 0 100-1 .5.5 0 000 1z"/>
+        </svg>
+        <input type="file" accept="image/*" aria-label="Upload right side image file" />
+      </div>
+      <div class="upload-card" tabindex="0" aria-label="Upload left side image">
+        <div class="upload-label">Left side</div>
+        <svg class="camera-icon" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M20 5h-3.172l-1.414-1.414A2 2 0 0013.172 3H10.828a2 2 0 00-1.414.586L8 5H5c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h15c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zM12 17a4 4 0 110-8 4 4 0 010 8zM7.5 12a.5.5 0 100-1 .5.5 0 000 1z"/>
+        </svg>
+        <input type="file" accept="image/*" aria-label="Upload left side image file" />
+      </div>
+    </div>
+  </div>
+
+  <div class="save-btn-wrapper">
+    <button type="submit" class="save-btn" form="vehicle-form" aria-label="Save vehicle data form">Save Data</button>
+  </div>
+  
+</div>
+
+<nav class="bottom-nav" role="navigation" aria-label="Main bottom navigation">
+  <div class="nav-item" tabindex="0" aria-label="Loads navigation option">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+      <path d="M3 12h18v2H3z" />
+    </svg>
+    Loads
+  </div>
+  <div class="nav-item active" tabindex="0" aria-current="page" aria-label="Sell and Buy navigation option">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+      <path d="M3 6h18v2H3zM5 12h14v2H5zM7 18h10v2H7z"/>
+    </svg>
+    Sell & Buy
+  </div>
+  <div class="nav-item" tabindex="0" aria-label="Finance and Insurance navigation option">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+      <circle cx="12" cy="10" r="3" />
+      <path d="M5.05 18.364a9 9 0 0113.9 0" />
+    </svg>
+    Finance & Insurance
+  </div>
+  <div class="nav-item" tabindex="0" aria-label="Fuel navigation option">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+      <path d="M7 2v6h10V2H7zM6 8H18l1 10H5L6 8z" />
+    </svg>
+    Fuel
+  </div>
+  <div class="nav-item" tabindex="0" aria-label="Privacy and Terms information">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+      <circle cx="12" cy="12" r="10" stroke-width="2" fill="none"/>
+      <text x="12" y="17" font-size="16" text-anchor="middle" fill="#999">i</text>
+    </svg>
+    Privacy & Terms
+  </div>
+</nav>
+
+</body>
+</html>
